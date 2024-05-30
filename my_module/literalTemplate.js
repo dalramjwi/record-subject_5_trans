@@ -1,4 +1,32 @@
 const template = {
+  baseTop: `<!DOCTYPE html>
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sorock</title>
+      </head>
+      <body>
+      `,
+
+  baseEnd: `</body>
+            </html>`,
+
+  header: function (banner, search) {
+    `<header>
+    ${banner}
+    ${search}
+    </header>
+    `;
+  },
+
+  main: function (aside, root) {
+    `<main>
+    ${aside}
+    ${root}
+    </main>
+    `;
+  },
   htmlTempalte: function (title, content, tag) {
     return `<!DOCTYPE html>
     <html lang="en">
@@ -33,25 +61,7 @@ const template = {
   },
 
   createTemplate: function (htmlList) {
-    const baseTop = `<!DOCTYPE html>
-    <html lang="ko">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sorock</title>
-      </head>`;
-
-    const headerStart = `<header>`;
-    const headerEnd = `</header>`;
-    const headerBanner = `<div id="banner">
-    <a href="#">수록</a>
-  </div>`;
-    const headerSearch = `<div id="search"></div>`;
-    const mainStart = `<main>`;
-    const mainEnd = `</main>`;
-    const asideStart = `<aside>`;
-    const asideEnd = `</aside>`;
-    return ``;
+    return template.baseTop + this.header() + this.main() + template.baseEnd;
   },
 };
 {
@@ -60,10 +70,9 @@ const template = {
 {
   /* <script type="module" src="./index.js"></script> */
 }
-
+console.log(template.createTemplate());
 // function listTemplate() {}
 
 // export한 데이터 받아오는 명령어
 //? const template = require("./literalTemplate");
-console.log(template.tagmake("main"));
 module.exports = template;
