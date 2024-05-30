@@ -13,7 +13,7 @@ const template = {
             </html>`,
 
   header: function (banner, search) {
-    `<header>
+    return `<header>
     ${banner}
     ${search}
     </header>
@@ -21,11 +21,31 @@ const template = {
   },
 
   main: function (aside, root) {
-    `<main>
+    return `<main>
     ${aside}
     ${root}
     </main>
     `;
+  },
+  banner: `<div id="banner">
+        <a href="#">수록</a>
+      </div>`,
+  search: `<div id="search"></div>`,
+  aside: function (joy, my) {
+    return `<aside>
+    <div id="sidebar">
+      <div id="joy">${joy}</div>
+      <div id="my">${my}</div>
+    </div>
+    </aside>`;
+  },
+  root: function (htmlList) {
+    return `<div id="root">
+      <div id="main">
+        <div id="htmlList">${htmlList}</div>
+        <div id="write"></div>
+      </div>
+    </div>`;
   },
   htmlTempalte: function (title, content, tag) {
     return `<!DOCTYPE html>
@@ -60,8 +80,13 @@ const template = {
     </html>`;
   },
 
-  createTemplate: function (htmlList) {
-    return template.baseTop + this.header() + this.main() + template.baseEnd;
+  createTemplate: function () {
+    return (
+      template.baseTop +
+      this.header(this.banner, this.search) +
+      this.main(this.aside("변수1", "변수2"), this.root("리스트")) +
+      template.baseEnd
+    );
   },
 };
 {
