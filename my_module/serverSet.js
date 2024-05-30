@@ -116,7 +116,14 @@ const serverSet = function serverSet(port) {
           `../public/data/${jparse.title}.json`
         );
         const readJsonFilePath = path.join(__dirname, `../public/data`);
-        // fs.writeFile(writeJsonFilePath, `${title}`, (err) => {});
+        //전송된 데이터로 html 생성
+        fs.writeFile(
+          `${readJsonFilePath}/${title}.html`,
+          template.htmlTempalte(title, content, tag),
+          (err) => {
+            // console.log(err);
+          }
+        );
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);
