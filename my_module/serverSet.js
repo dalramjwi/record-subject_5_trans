@@ -52,14 +52,7 @@ const serverSet = function serverSet(port) {
   //*get 요청일때 처리 함수
   function getMethod(req, res, filePath, contentType) {
     console.log(req.url);
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        console.log("오류 발생 : ", err);
-      } else {
-        res.writeHead(200, { "Content-Type": contentType });
-        res.end(data);
-      }
-    });
+
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
       fs.readFile("./public/titleData.json", (err, data) => {
@@ -82,60 +75,16 @@ const serverSet = function serverSet(port) {
         const htmlList = `${templateList(data)}`;
         res.end(template.createTemplate(htmlList));
       });
+    } else {
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          console.log("오류 발생 : ", err);
+        } else {
+          res.writeHead(200, { "Content-Type": contentType });
+          res.end(data);
+        }
+      });
     }
-
-    // if (req.url === "/index.js") {
-    //   fs.readFile("./public/index.js", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "application/javascript" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === "/index.css") {
-    //   fs.readFile("./public/index.css", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "text/css" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === "/buttonSet.js") {
-    //   fs.readFile("./public/buttonSet.js", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "application/javascript" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === "/formSet.js") {
-    //   fs.readFile("./public/formSet.js", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "application/javascript" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === "/formSet2.js") {
-    //   fs.readFile("./public/formSet2.js", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "application/javascript" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === "/inputSet.js") {
-    //   fs.readFile("./public/inputSet.js", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "application/javascript" });
-    //     res.end(data);
-    //   });
-    // }
-    // if (req.url === filePath) {
-    //   fs.readFile(`./public${filePath}`, (err, data) => {
-    //     if (err) {
-    //       console.log("오류 발생 : ", err);
-    //     } else {
-    //       res.writeHead(200, { "Content-Type": contentType });
-    //       res.end(data);
-    //     }
-    //   });
-    // }
-    // if (req.url === "/data/ex.html") {
-    //   fs.readFile("./public/data/ex.html", (err, data) => {
-    //     res.writeHead(200, { "Content-Type": "text/html" });
-    //     res.end(data);
-    //   });
-    // }
   }
 
   //*post 요청일때 처리 함수
