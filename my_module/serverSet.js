@@ -4,6 +4,7 @@ const serverSet = function serverSet(port) {
   const path = require("path");
   const qs = require("node:querystring");
   const template = require("./literalTemplate");
+  const updateJSON = require("./updateJSON");
 
   //*문서 형식에 따른 표기
   const mimeType = {
@@ -116,45 +117,23 @@ const serverSet = function serverSet(port) {
         );
         const readJsonFilePath = path.join(__dirname, `../public/data`);
         // fs.writeFile(writeJsonFilePath, `${title}`, (err) => {});
-        fs.readFile("./public/titleData.json", (err, data) => {
-          if (err) {
-            console.log(err);
-          } else {
-            let parse = JSON.parse(data);
-            parse.push(title);
-            let parsetitlePush = JSON.stringify(parse);
-            fs.writeFile(
-              "./public/titleData.json",
-              `${parsetitlePush}`,
-              (err, data) => {
-                // fs.readFile("./public/saveData.json", (err, data) => {
-                //   function templateList(data) {
-                //     let parse = JSON.parse(data);
-                //     let list = "<ul>";
-                //     for (let i = parse.length - 1; i > parse.length - 6; i--) {
-                //       if (parse[i] === undefined) {
-                //         list =
-                //           list +
-                //           `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
-                //       } else {
-                //         list =
-                //           list +
-                //           `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
-                //       }
-                //     }
-                //     list = list + "</ul>";
-                //     //만약 list의 내용이 undefined이면 visibillity 조정
-                //     return list;
-                //   }
-                //   // let newArr = htmlArr.slice(-5);
-                //   // console.log(newArr);
-                //   const htmlList = `${templateList(data)}`;
-                //   res.end(template.createTemplate(htmlList));
-                // });
-              }
-            );
-          }
-        });
+        // fs.readFile("./public/titleData.json", (err, data) => {
+        //   if (err) {
+        //     console.log(err);
+        //   } else {
+        //     let parse = JSON.parse(data);
+        //     parse.push(title);
+        //     let parsetitlePush = JSON.stringify(parse);
+        //     fs.writeFile(
+        //       "./public/titleData.json",
+        //       `${parsetitlePush}`,
+        //       (err, data) => {}
+        //     );
+        //   }
+        // });
+        updateJSON(title);
+        updateJSON(content);
+        updateJSON(tag);
       });
     }
   }
