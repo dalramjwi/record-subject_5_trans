@@ -2,6 +2,9 @@ const serverSet = function serverSet(port) {
   const http = require("http");
   const fs = require("fs");
   const path = require("path");
+  const qs = require("node:querystring");
+  const template = require("./literalTemplate");
+
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -85,15 +88,6 @@ const serverSet = function serverSet(port) {
     } else if (req.method === "POST") {
       postMethod(req, res);
     }
-
-    // fs.readFile(filePath, (err, data) => {
-    //   if (err) {
-    //     console.log("오류 발생", err);
-    //   } else {
-    //     res.writeHead(200, { "Content-Type": contentType });
-    //     res.end(data);
-    //   }
-    // });
   });
 
   server.listen(port, (err) => {
