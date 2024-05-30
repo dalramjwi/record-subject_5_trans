@@ -32,19 +32,6 @@ const template = {
     </html>`;
   },
 
-  a: function (tag) {
-    let tagStart = `<${tag}>`;
-    // let tagEnd = `</${tag}>`;
-
-    return tagStart, tagEnd;
-  },
-  tagmake: function a(tag) {
-    let tagStart = `<${tag}>`;
-    let tagEnd = `</${tag}>`;
-
-    return tagStart, tagEnd;
-  },
-
   createTemplate: function (htmlList) {
     const baseTop = `<!DOCTYPE html>
     <html lang="ko">
