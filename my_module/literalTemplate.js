@@ -32,29 +32,24 @@ const template = {
     </html>`;
   },
   createTemplate: function (htmlList) {
-    return `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    </head>
-    <body>
-    <div id="root">
-    <div id="sidebar">
-    <div id="joy"></div>
-    <div id="my"></div>
-    </div>
-    <div id="main">
-        <div id="search"></div>
-        <div id="htmlList">
-        ${htmlList}
-        </div>
-        <div id="write"></div>
-      </div>
-    </div>
-    </body>
-    </html>`;
+    const baseTop = `<!DOCTYPE html>
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sorock</title>
+      </head>`;
+    const headerStart = `<header>`;
+    const headerEnd = `</header>`;
+    const headerBanner = `<div id="banner">
+    <a href="#">수록</a>
+  </div>`;
+    const headerSearch = `<div id="search"></div>`;
+    const mainStart = `<main>`;
+    const mainEnd = `</main>`;
+    const asideStart = `<aside>`;
+    const asideEnd = `</aside>`;
+    return ``;
   },
 };
 {
