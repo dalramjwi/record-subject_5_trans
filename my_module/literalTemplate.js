@@ -5,13 +5,13 @@ const template = {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sorock</title>
-        <link rel="stylesheet" href="/my_module/index.css" />
+        <link rel="stylesheet" href="./index.css">
       </head>
       <body>
       `,
 
   baseEnd: `</body>
-  <script type="module" src="/my_module/index.js"></script>
+  <script type="module" src="./index.js"></script>
             </html>`,
 
   header: function (banner, search) {

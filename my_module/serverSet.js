@@ -64,6 +64,43 @@ const serverSet = function serverSet(port) {
       res.write(html);
       res.end();
     }
+
+    if (req.url === "/index.js") {
+      fs.readFile("./public/index.js", (err, data) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
+    if (req.url === "/index.css") {
+      fs.readFile("./public/index.css", (err, data) => {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.end(data);
+      });
+    }
+    if (req.url === "/buttonSet.js") {
+      fs.readFile("./public/buttonSet.js", (err, data) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
+    if (req.url === "/formSet.js") {
+      fs.readFile("./public/formSet.js", (err, data) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
+    if (req.url === "/formSet2.js") {
+      fs.readFile("./public/formSet2.js", (err, data) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
+    if (req.url === "/inputSet.js") {
+      fs.readFile("./public/inputSet.js", (err, data) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
   }
 
   //*post 요청일때 처리 함수
