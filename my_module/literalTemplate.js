@@ -31,6 +31,20 @@ const template = {
       <script src="../page.js"></script>
     </html>`;
   },
+
+  a: function (tag) {
+    let tagStart = `<${tag}>`;
+    // let tagEnd = `</${tag}>`;
+
+    return tagStart, tagEnd;
+  },
+  tagmake: function a(tag) {
+    let tagStart = `<${tag}>`;
+    let tagEnd = `</${tag}>`;
+
+    return tagStart, tagEnd;
+  },
+
   createTemplate: function (htmlList) {
     const baseTop = `<!DOCTYPE html>
     <html lang="ko">
@@ -39,6 +53,7 @@ const template = {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sorock</title>
       </head>`;
+
     const headerStart = `<header>`;
     const headerEnd = `</header>`;
     const headerBanner = `<div id="banner">
@@ -63,5 +78,5 @@ const template = {
 
 // export한 데이터 받아오는 명령어
 //? const template = require("./literalTemplate");
-
+console.log(template.tagmake("main"));
 module.exports = template;
