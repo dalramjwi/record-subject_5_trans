@@ -66,7 +66,9 @@ const serverSet = function serverSet(port) {
                 list +
                 `<li style="visibility: hidden;"><a href="./public/data/${parse[i]}.html">${parse[i]}</a></li>`;
             } else {
-              list = list + `<li><a href="./data/ex.html">${parse[i]}</a></li>`;
+              list =
+                list +
+                `<li><a href="./data/${parse[i]}.html">${parse[i]}</a></li>`;
             }
           }
           list = list + "</ul>";
@@ -119,6 +121,8 @@ const serverSet = function serverSet(port) {
         updateJSON("title", title);
         updateJSON("content", content);
         updateJSON("tag", tag);
+        res.writeHead(302, { Location: "/" });
+        res.end();
       });
     }
   }

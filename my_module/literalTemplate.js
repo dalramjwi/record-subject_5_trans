@@ -36,7 +36,7 @@ const template = {
     `;
   },
   banner: `<div id="banner">
-        <a href="#">수록</a>
+        <a href="/">수록</a>
       </div>`,
   search: `<div id="search"></div>`,
   aside: function (joy, my) {
@@ -77,7 +77,7 @@ const template = {
   },
 };
 
-// console.log(template.createTemplate());
+console.log(template.htmlTempalte());
 // function listTemplate() {}
 
 // export한 데이터 받아오는 명령어
