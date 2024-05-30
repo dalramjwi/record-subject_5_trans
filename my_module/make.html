@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${title}</title>
+    <link rel="stylesheet" href="../page.css" />
+  </head>
+  <body>
+    <div>
+      <a href="../index.html">수록</a>
+    </div>
+    <div>
+      <h1>${title}</h1>
+      <h2>${content}</h2>
+      <div>
+        <p>${tag}</p>
+        <div>
+          <form action="./su" method="post">
+            <button type="submit">수정</button>
+          </form>
+          <form action="./sak" method="post">
+            <button type="submit">삭제</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../page.js"></script>
+</html>

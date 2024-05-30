@@ -1,18 +1,22 @@
 const template = {
-  baseTop: `<!DOCTYPE html>
+  baseTop: function (name) {
+    return `<!DOCTYPE html>
     <html lang="ko">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sorock</title>
-        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="./${name}.css">
       </head>
       <body>
-      `,
+      `;
+  },
 
-  baseEnd: `</body>
-  <script type="module" src="./index.js"></script>
-            </html>`,
+  baseEnd: function (name) {
+    return `</body>
+  <script type="module" src="./${name}.js"></script>
+            </html>`;
+  },
 
   header: function (banner, search) {
     return `<header>
@@ -50,47 +54,18 @@ const template = {
     </div>`;
   },
   htmlTempalte: function (title, content, tag) {
-    return `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>${title}</title>
-        <link rel="stylesheet" href="../page.css" />
-      </head>
-      <body>
-        <div>
-          <a href="../index.html">수록</a>
-        </div>
-        <div>
-          <h1>${title}</h1>
-          <h2>${content}</h2>
-          <div>
-            <p>${tag}</p>
-            <div>
-            <form action="./su" method="post">
-              <button type="submit">수정</button>
-            </form>
-            <form action="./sak" method="post">
-              <button type="submit">삭제</button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </body>
-      <script src="../page.js"></script>
-    </html>`;
+    return template.baseTop + this.header;
   },
 
   createTemplate: function () {
     return (
-      template.baseTop +
+      template.baseTop("index") +
       this.header(this.banner, this.search) +
       this.main(
         this.aside("리스트 예비", "리스트 예비"),
         this.root("html 리스트")
       ) +
-      template.baseEnd
+      template.baseEnd("index")
     );
   },
 };
