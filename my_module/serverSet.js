@@ -50,14 +50,20 @@ const serverSet = function serverSet(port) {
 
   //*get 요청일때 처리 함수
   function getMethod(req, res, filePath, contentType) {
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        console.log("오류 발생 : ", err);
-      } else {
-        res.writeHead(200, { "Content-Type": contentType });
-        res.end(data);
-      }
-    });
+    // fs.readFile(filePath, (err, data) => {
+    //   if (err) {
+    //     console.log("오류 발생 : ", err);
+    //   } else {
+    //     res.writeHead(200, { "Content-Type": contentType });
+    //     res.end(data);
+    //   }
+    // });
+    if (req.url === "/") {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      const html = template.createTemplate("임시");
+      res.write(html);
+      res.end();
+    }
   }
 
   //*post 요청일때 처리 함수
