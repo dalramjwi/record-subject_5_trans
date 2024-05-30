@@ -53,9 +53,27 @@ const serverSet = function serverSet(port) {
   function getMethod(req, res, filePath, contentType) {
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
-      const html = template.createTemplate();
-      res.write(html);
-      res.end();
+      fs.readFile("./public/titleData.json", (err, data) => {
+        function templateList(data) {
+          let parse = JSON.parse(data);
+          let list = "<ul>";
+          for (let i = parse.length - 1; i > parse.length - 6; i--) {
+            if (parse[i] === undefined) {
+              list =
+                list +
+                `<li style="visibility: hidden;"><a href="./public/data/${parse[i]}.html">${parse[i]}</a></li>`;
+            } else {
+              list =
+                list +
+                `<li><a href="./public/data/${parse[i]}.html">${parse[i]}</a></li>`;
+            }
+          }
+          list = list + "</ul>";
+          return list;
+        }
+        const htmlList = `${templateList(data)}`;
+        res.end(template.createTemplate(htmlList));
+      });
     }
 
     if (req.url === "/index.js") {
@@ -144,8 +162,10 @@ const serverSet = function serverSet(port) {
     let contentType = fileUtils.getContentType(ext);
 
     if (req.method === "GET") {
+      filePath = decodeURI(filePath);
       getMethod(req, res, filePath, contentType);
     } else if (req.method === "POST") {
+      filePath = decodeURI(filePath);
       postMethod(req, res);
     }
   });
