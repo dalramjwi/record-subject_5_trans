@@ -67,7 +67,7 @@ const serverSet = function serverSet(port) {
             } else {
               list =
                 list +
-                `<li><a href="./public/data/${parse[i]}.html">${parse[i]}</a></li>`;
+                `<li><a href="https://www.google.com/search?q=%EC%88%98%EB%A1%9D+%EC%98%81%EC%96%B4%EB%A1%9C&rlz=1C1CHBD_koKR1030KR1030&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyCQgCECMYJxjqAjIJCAMQIxgnGOoCMgkIBBAjGCcY6gIyCQgFECMYJxjqAjIJCAYQIxgnGOoCMgkIBxAuGCcY6gLSAQk5MDUzNWowajeoAgiwAgE&sourceid=chrome&ie=UTF-8">${parse[i]}</a></li>`;
             }
           }
           list = list + "</ul>";
@@ -111,14 +111,6 @@ const serverSet = function serverSet(port) {
     if (req.url === "/inputSet.js") {
       fs.readFile("./public/inputSet.js", (err, data) => {
         res.writeHead(200, { "Content-Type": "application/javascript" });
-        res.end(data);
-      });
-    }
-    if (req.url === filePath) {
-    }
-    if (req.url === "/ex%20.html") {
-      fs.readFile("./public/data/ex .html", (err, data) => {
-        res.writeHead(200, { "Content-Type": "text/html" });
         res.end(data);
       });
     }
