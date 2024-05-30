@@ -38,15 +38,14 @@ const template = {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body>
+    </head>
+    <body>
     <div id="root">
-      <div id="sidebar">
-        <div id="joy"></div>
-        <div id="my"></div>
-      </div>
-      <div id="main">
+    <div id="sidebar">
+    <div id="joy"></div>
+    <div id="my"></div>
+    </div>
+    <div id="main">
         <div id="search"></div>
         <div id="htmlList">
         ${htmlList}
@@ -54,11 +53,16 @@ const template = {
         <div id="write"></div>
       </div>
     </div>
-  </body>
-  <script type="module" src="./index.js"></script>
-</html>`;
+    </body>
+    </html>`;
   },
 };
+{
+  /* <link rel="stylesheet" href="./index.css" /> */
+}
+{
+  /* <script type="module" src="./index.js"></script> */
+}
 
 // function listTemplate() {}
 
