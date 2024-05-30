@@ -103,8 +103,58 @@ const serverSet = function serverSet(port) {
         body += data;
       });
       req.on("end", () => {
-        let parse = qs.parse(body);
-        console.log(parse);
+        let qparse = qs.parse(body);
+        let parse = JSON.stringify(qparse);
+        let jparse = JSON.parse(parse);
+        const title = jparse.title;
+        const content = jparse.content;
+        const tag = jparse.tag;
+        //파일 위치 변수 지정
+        const writeJsonFilePath = path.join(
+          __dirname,
+          `../public/data/${jparse.title}.json`
+        );
+        const readJsonFilePath = path.join(__dirname, `../public/data`);
+        // fs.writeFile(writeJsonFilePath, `${title}`, (err) => {});
+        fs.readFile("./public/titleData.json", (err, data) => {
+          if (err) {
+            console.log(err);
+          } else {
+            let parse = JSON.parse(data);
+            parse.push(title);
+            let parsetitlePush = JSON.stringify(parse);
+            fs.writeFile(
+              "./public/titleData.json",
+              `${parsetitlePush}`,
+              (err, data) => {
+                // fs.readFile("./public/saveData.json", (err, data) => {
+                //   function templateList(data) {
+                //     let parse = JSON.parse(data);
+                //     let list = "<ul>";
+                //     for (let i = parse.length - 1; i > parse.length - 6; i--) {
+                //       if (parse[i] === undefined) {
+                //         list =
+                //           list +
+                //           `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                //       } else {
+                //         list =
+                //           list +
+                //           `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                //       }
+                //     }
+                //     list = list + "</ul>";
+                //     //만약 list의 내용이 undefined이면 visibillity 조정
+                //     return list;
+                //   }
+                //   // let newArr = htmlArr.slice(-5);
+                //   // console.log(newArr);
+                //   const htmlList = `${templateList(data)}`;
+                //   res.end(template.createTemplate(htmlList));
+                // });
+              }
+            );
+          }
+        });
       });
     }
   }

@@ -94,12 +94,7 @@ const template = {
     );
   },
 };
-{
-  /* <link rel="stylesheet" href="./index.css" /> */
-}
-{
-  /* <script type="module" src="./index.js"></script> */
-}
+
 console.log(template.createTemplate());
 // function listTemplate() {}
 
