@@ -1,5 +1,25 @@
-const htmlList = require("./htmlList");
+// const htmlList = require("./htmlList");
+const fs = require("fs");
 const template = {
+  htmlList: fs.readFile("../public/titleData.json", (err, data) => {
+    let list = "<ul>";
+    let parse = JSON.parse(data);
+    // console.log(parse);
+    for (let i = parse.length - 1; i > parse.length - 6; i--) {
+      if (parse[i] === undefined) {
+        list =
+          list +
+          `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+      } else {
+        list =
+          list + `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+      }
+    }
+    list = list + "</ul>";
+    //만약 list의 내용이 undefined이면 visibillity 조정
+    console.log(list);
+    return list;
+  }),
   baseTop: function (name) {
     return `<!DOCTYPE html>
     <html lang="ko">
@@ -58,7 +78,7 @@ const template = {
     return (
       template.baseTop("page") +
       this.header(this.banner, this.search) +
-      this.main(this.aside("", ""), this.root(`${htmlList}`)) +
+      this.main(this.aside("", ""), this.root(this.htmlList)) +
       template.baseEnd("page")
     );
   },
@@ -69,7 +89,7 @@ const template = {
       this.header(this.banner, this.search) +
       this.main(
         this.aside("리스트 예비", "리스트 예비"),
-        this.root(`${htmlList()}`)
+        this.root(this.htmlList)
       ) +
       template.baseEnd("index")
     );
