@@ -101,6 +101,8 @@ const serverSet = function serverSet(port) {
         console.log(qparse);
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
+        let time = qparse.time;
+        console.log(time);
         const title = jparse.title;
         const content = jparse.content;
         const tag = jparse.tag;
