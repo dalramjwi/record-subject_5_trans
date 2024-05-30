@@ -54,7 +54,12 @@ const template = {
     </div>`;
   },
   htmlTempalte: function (title, content, tag) {
-    return template.baseTop + this.header;
+    return (
+      template.baseTop("page") +
+      this.header(this.banner, this.search) +
+      this.main(this.aside("", ""), this.root("html 리스트")) +
+      template.baseEnd("page")
+    );
   },
 
   createTemplate: function () {
