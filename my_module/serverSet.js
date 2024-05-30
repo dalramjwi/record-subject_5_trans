@@ -27,7 +27,7 @@ const serverSet = function serverSet(port) {
       if (url === "/") {
         filePath = "./public/index.html";
       } else {
-        filePath = `./public${url}`;
+        filePath = url;
       }
       return filePath;
     },
@@ -51,12 +51,12 @@ const serverSet = function serverSet(port) {
 
   //*get 요청일때 처리 함수
   function getMethod(req, res, filePath, contentType) {
+    console.log(req.url);
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
       fs.readFile("./public/titleData.json", (err, data) => {
         function templateList(data) {
           let decode = decodeURI(data);
-          console.log(decode);
           let parse = JSON.parse(decode);
           let list = "<ul>";
           for (let i = parse.length - 1; i > parse.length - 6; i--) {
@@ -65,9 +65,7 @@ const serverSet = function serverSet(port) {
                 list +
                 `<li style="visibility: hidden;"><a href="./public/data/${parse[i]}.html">${parse[i]}</a></li>`;
             } else {
-              list =
-                list +
-                `<li><a href="https://www.google.com/search?q=%EC%88%98%EB%A1%9D+%EC%98%81%EC%96%B4%EB%A1%9C&rlz=1C1CHBD_koKR1030KR1030&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyCQgCECMYJxjqAjIJCAMQIxgnGOoCMgkIBBAjGCcY6gIyCQgFECMYJxjqAjIJCAYQIxgnGOoCMgkIBxAuGCcY6gLSAQk5MDUzNWowajeoAgiwAgE&sourceid=chrome&ie=UTF-8">${parse[i]}</a></li>`;
+              list = list + `<li><a href="./data/ex.html">${parse[i]}</a></li>`;
             }
           }
           list = list + "</ul>";
@@ -114,6 +112,22 @@ const serverSet = function serverSet(port) {
         res.end(data);
       });
     }
+    if (req.url === filePath) {
+      fs.readFile(`./public${filePath}`, (err, data) => {
+        if (err) {
+          console.log("오류 발생 : ", err);
+        } else {
+          res.writeHead(200, { "Content-Type": contentType });
+          res.end(data);
+        }
+      });
+    }
+    // if (req.url === "/data/ex.html") {
+    //   fs.readFile("./public/data/ex.html", (err, data) => {
+    //     res.writeHead(200, { "Content-Type": "text/html" });
+    //     res.end(data);
+    //   });
+    // }
   }
 
   //*post 요청일때 처리 함수
