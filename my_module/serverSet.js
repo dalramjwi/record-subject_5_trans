@@ -117,23 +117,10 @@ const serverSet = function serverSet(port) {
         );
         const readJsonFilePath = path.join(__dirname, `../public/data`);
         // fs.writeFile(writeJsonFilePath, `${title}`, (err) => {});
-        // fs.readFile("./public/titleData.json", (err, data) => {
-        //   if (err) {
-        //     console.log(err);
-        //   } else {
-        //     let parse = JSON.parse(data);
-        //     parse.push(title);
-        //     let parsetitlePush = JSON.stringify(parse);
-        //     fs.writeFile(
-        //       "./public/titleData.json",
-        //       `${parsetitlePush}`,
-        //       (err, data) => {}
-        //     );
-        //   }
-        // });
-        updateJSON(title);
-        updateJSON(content);
-        updateJSON(tag);
+        //전송받은 POST 데이터로 JSON DB 업데이트
+        updateJSON("title", title);
+        updateJSON("content", content);
+        updateJSON("tag", tag);
       });
     }
   }

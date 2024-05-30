@@ -1,6 +1,6 @@
-const updateJSON = function (dataname) {
+const updateJSON = function (datatype, dataname) {
   const fs = require("fs");
-  fs.readFile(`./public/${dataname}Data.json`, (err, data) => {
+  fs.readFile(`./public/${datatype}Data.json`, (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -8,7 +8,7 @@ const updateJSON = function (dataname) {
       parse.push(dataname);
       let parsetitlePush = JSON.stringify(parse);
       fs.writeFile(
-        `./public/${dataname}.json`,
+        `./public/${datatype}Data.json`,
         `${parsetitlePush}`,
         (err, data) => {}
       );
