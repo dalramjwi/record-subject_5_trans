@@ -77,7 +77,7 @@ const template = {
   },
 };
 
-console.log(template.createTemplate());
+// console.log(template.createTemplate());
 // function listTemplate() {}
 
 // export한 데이터 받아오는 명령어
