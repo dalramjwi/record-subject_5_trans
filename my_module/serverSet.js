@@ -97,14 +97,16 @@ const serverSet = function serverSet(port) {
 
   //*post 요청일때 처리 함수
   function postMethod(req, res) {
-    let body = "";
-    req.on("data", (data) => {
-      body += data;
-    });
-    req.on("end", () => {
-      let parse = qs.parse(body);
-      console.log(parse);
-    });
+    if (req.url === "/write") {
+      let body = "";
+      req.on("data", (data) => {
+        body += data;
+      });
+      req.on("end", () => {
+        let parse = qs.parse(body);
+        console.log(parse);
+      });
+    }
   }
 
   //*서버 생성

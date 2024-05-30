@@ -1,8 +1,6 @@
-//변수 할당
 import { formSet } from "./formSet.js";
 import { formSet2 } from "./formSet2.js";
-
-console.log(2);
+//변수 할당
 const banner = document.getElementById("banner");
 const search = document.getElementById("search");
 const sidebar = document.getElementById("sidebar");

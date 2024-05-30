@@ -86,7 +86,10 @@ const template = {
     return (
       template.baseTop +
       this.header(this.banner, this.search) +
-      this.main(this.aside("변수1", "변수2"), this.root("리스트")) +
+      this.main(
+        this.aside("리스트 예비", "리스트 예비"),
+        this.root("html 리스트")
+      ) +
       template.baseEnd
     );
   },
