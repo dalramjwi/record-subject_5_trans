@@ -77,8 +77,10 @@ const template = {
       template.baseTop("page") +
       this.header(this.banner, this.search) +
       this.main(this.aside("", ""), this.root("")) +
+      `<div id = "page">` +
       this.text(title, content, tag) +
       this.btn("btn") +
+      `</div>` +
       template.baseEnd("page")
     );
   },
@@ -96,7 +98,7 @@ const template = {
   },
 };
 
-console.log(template.htmlTempalte());
+// console.log(template.htmlTempalte());
 // function listTemplate() {}
 
 // export한 데이터 받아오는 명령어
