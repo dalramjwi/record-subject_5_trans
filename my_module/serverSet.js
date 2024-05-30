@@ -51,7 +51,7 @@ const serverSet = function serverSet(port) {
 
   //*get 요청일때 처리 함수
   function getMethod(req, res, filePath, contentType) {
-    console.log(req.url);
+    // console.log(req.url);
 
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
