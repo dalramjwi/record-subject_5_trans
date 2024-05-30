@@ -60,7 +60,7 @@ const serverSet = function serverSet(port) {
     // });
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
-      const html = template.createTemplate("임시");
+      const html = template.createTemplate();
       res.write(html);
       res.end();
     }
