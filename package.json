@@ -1,0 +1,11 @@
+{
+  "name": "record-subject_5_trans",
+  "version": "1.0.0",
+  "description": "dalramjwi_Study_node.js의 subject_5의 trans",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
