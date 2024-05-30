@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${title}</title>
-    <link rel="stylesheet" href="../page.css" />
+    <title>Sorock</title>
+    <link rel="stylesheet" href="./page.css" />
   </head>
   <body>
-    <div>
-      <a href="../index.html">수록</a>
-    </div>
-    <div>
-      <h1>${title}</h1>
-      <h2>${content}</h2>
-      <div>
-        <p>${tag}</p>
-        <div>
-          <form action="./su" method="post">
-            <button type="submit">수정</button>
-          </form>
-          <form action="./sak" method="post">
-            <button type="submit">삭제</button>
-          </form>
+    <header>
+      <div id="banner">
+        <a href="/">수록</a>
+      </div>
+      <div id="search"></div>
+    </header>
+    <main>
+      <aside>
+        <div id="sidebar">
+          <div id="joy"></div>
+          <div id="my"></div>
+        </div>
+      </aside>
+      <div id="root">
+        <div id="main">
+          <div id="htmlList"></div>
+          <div id="write"></div>
         </div>
       </div>
-    </div>
+      <div id="text">
+        <div id="title">${title}</div>
+        <div id="content">${content}</div>
+        <div id="tag">${tag}</div>
+      </div>
+      <div id="btn">
+        <form action="./su" method="post">
+          <button type="submit">수정</button>
+        </form>
+        <form action="./sak" method="post">
+          <button type="submit">삭제</button>
+        </form>
+      </div>
+    </main>
   </body>
-  <script src="../page.js"></script>
+  <script type="module" src="./page.js"></script>
 </html>

@@ -55,11 +55,30 @@ const template = {
       </div>
     </div>`;
   },
+  text: function (title, content, tag) {
+    return `<div id="text">
+    <div id="title">${title}</div>
+    <div id="content">${content}</div>
+    <div id="tag">${tag}</div>
+  </div>`;
+  },
+  btn: function (btn) {
+    return `<div id="${btn}">
+    <form action="./su" method="post">
+      <button type="submit">수정</button>
+    </form>
+    <form action="./sak" method="post">
+      <button type="submit">삭제</button>
+    </form>
+  </div>`;
+  },
   htmlTempalte: function (title, content, tag) {
     return (
       template.baseTop("page") +
       this.header(this.banner, this.search) +
       this.main(this.aside("", ""), this.root("")) +
+      this.text(title, content, tag) +
+      this.btn("btn") +
       template.baseEnd("page")
     );
   },
