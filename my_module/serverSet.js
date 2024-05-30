@@ -98,6 +98,7 @@ const serverSet = function serverSet(port) {
       });
       req.on("end", () => {
         let qparse = qs.parse(body);
+        console.log(qparse);
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
         const title = jparse.title;
@@ -121,8 +122,61 @@ const serverSet = function serverSet(port) {
         updateJSON("title", title);
         updateJSON("content", content);
         updateJSON("tag", tag);
+        updateJSON("object", qparse);
         res.writeHead(302, { Location: "/" });
         res.end();
+      });
+    }
+    if (req.url === "/data/sak") {
+      let body = "";
+      req.on("data", (data) => {
+        body += data.toString();
+      });
+      req.on("end", () => {
+        let qparse = qs.parse(body);
+        let parse = JSON.stringify(qparse);
+        let jparse = JSON.parse(parse);
+        const readJsonFilePath = path.join(__dirname, `../public/data`);
+        // console.log(req.headers.referer);
+        let referer = req.headers.referer;
+        let refererSplit = referer.split("/");
+        let parserefer = refererSplit[4];
+        let namerefer = decodeURI(parserefer);
+        // console.log(namerefer);
+        fs.readdir(readJsonFilePath, (err, data) => {
+          const dirlist = data;
+          // console.log(dirlist);
+          dirlist.forEach((item) => {
+            if (item === namerefer) {
+              fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
+            }
+          });
+        });
+        fs.readFile("./public/titleData.json", (err, data) => {
+          let parse = JSON.parse(data);
+          let name = namerefer.split(".");
+          let realname = name[0];
+          let parsename = decodeURI(realname);
+          console.log(name);
+          console.log(parse);
+          for (let i = 0; i < parse.length; i++) {
+            if (parse[i] === parsename) {
+              parse.splice(i, 1);
+              parse = JSON.stringify(parse);
+              fs.writeFile(
+                "./public/titleData.json",
+                `${parse}`,
+                (err, data) => {}
+              );
+            }
+          }
+        });
+        res.writeHead(302, { Location: "/" });
+        res.end();
+        // fs.readFile("./public/write.html", (err, data) => {
+        //   console.log(data);
+        //   res.end(data);
+        // });
       });
     }
   }
