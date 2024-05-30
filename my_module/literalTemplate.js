@@ -1,3 +1,4 @@
+const htmlList = require("./htmlList");
 const template = {
   baseTop: function (name) {
     return `<!DOCTYPE html>
@@ -57,7 +58,7 @@ const template = {
     return (
       template.baseTop("page") +
       this.header(this.banner, this.search) +
-      this.main(this.aside("", ""), this.root("html 리스트")) +
+      this.main(this.aside("", ""), this.root(`${htmlList}`)) +
       template.baseEnd("page")
     );
   },
@@ -68,7 +69,7 @@ const template = {
       this.header(this.banner, this.search) +
       this.main(
         this.aside("리스트 예비", "리스트 예비"),
-        this.root("html 리스트")
+        this.root(`${htmlList()}`)
       ) +
       template.baseEnd("index")
     );
