@@ -1,12 +1,12 @@
-/* #root {
+#root {
   display: flex;
   flex-direction: row;
 }
 #main {
   display: flex;
   flex-direction: column;
-} */
-/* #write {
+}
+#write {
   display: flex;
   flex-direction: column;
-} */
+}

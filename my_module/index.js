@@ -1,15 +1,16 @@
 //변수 할당
-const root = document.getElementById("root");
+const banner = document.getElementById("banner");
+const search = document.getElementById("search");
 const sidebar = document.getElementById("sidebar");
 const joy = document.getElementById("joy");
 const my = document.getElementById("my");
+const root = document.getElementById("root");
 const main = document.getElementById("main");
-const search = document.getElementById("search");
 const htmlList = document.getElementById("htmlList");
 const write = document.getElementById("write");
 //모듈 사용 - serach
 import { formSet } from "./formSet.js";
-const formData = ["./test", "POST", search];
+const formData = ["./search", "POST", search];
 //후에 "./test"가 아닌 search page와 연계
 const inputData = ["type", "search", "페이지 제목 검색"];
 const buttonData = ["submit", "검색"];
