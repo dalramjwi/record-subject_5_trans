@@ -55,7 +55,9 @@ const serverSet = function serverSet(port) {
       res.writeHead(200, { "Content-Type": "text/html" });
       fs.readFile("./public/titleData.json", (err, data) => {
         function templateList(data) {
-          let parse = JSON.parse(data);
+          let decode = decodeURI(data);
+          console.log(decode);
+          let parse = JSON.parse(decode);
           let list = "<ul>";
           for (let i = parse.length - 1; i > parse.length - 6; i--) {
             if (parse[i] === undefined) {
@@ -109,6 +111,14 @@ const serverSet = function serverSet(port) {
     if (req.url === "/inputSet.js") {
       fs.readFile("./public/inputSet.js", (err, data) => {
         res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(data);
+      });
+    }
+    if (req.url === filePath) {
+    }
+    if (req.url === "/ex%20.html") {
+      fs.readFile("./public/data/ex .html", (err, data) => {
+        res.writeHead(200, { "Content-Type": "text/html" });
         res.end(data);
       });
     }
