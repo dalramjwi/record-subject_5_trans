@@ -5,7 +5,7 @@ const updateJSON = function (datatype, dataname, time) {
       console.log(err);
     } else {
       let parse = JSON.parse(data);
-      parse.push(dataname, time);
+      parse.push(dataname);
       let parsetitlePush = JSON.stringify(parse);
       fs.writeFile(
         `./public/${datatype}Data.json`,

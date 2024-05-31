@@ -122,14 +122,33 @@ const serverSet = function serverSet(port) {
           }
         ); //시간 함수
         function getCurrentDate() {
-          var currentDate = new Date();
-          return currentDate.toISOString();
+          let thisdate = new Date();
+          let year = thisdate.getFullYear();
+          let month = ("0" + (thisdate.getMonth() + 1)).slice(-2);
+          let day = ("0" + thisdate.getDate()).slice(-2);
+          let hours = thisdate.getHours();
+          let minutes = thisdate.getMinutes();
+          let seconds = thisdate.getSeconds();
+          const thistime =
+            year +
+            ":" +
+            month +
+            ":" +
+            day +
+            ":" +
+            hours +
+            ":" +
+            minutes +
+            ":" +
+            seconds;
+          return thistime;
         }
+        console.log(getCurrentDate());
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);
         updateJSON("tag", tag);
-        updateJSON("object", qparse, getCurrentDate());
+        updateJSON("object", qparse);
         res.writeHead(302, { Location: "/" });
         res.end();
       });
