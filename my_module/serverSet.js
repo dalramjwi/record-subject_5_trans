@@ -5,6 +5,8 @@ const serverSet = function serverSet(port) {
   const qs = require("node:querystring");
   const template = require("./literalTemplate");
   const updateJSON = require("./updateJSON");
+  const objectJSON = require("./objectJSON");
+  const getCurrentDate = require("./timeCheck");
 
   //*문서 형식에 따른 표기
   const mimeType = {
@@ -120,23 +122,15 @@ const serverSet = function serverSet(port) {
           (err) => {
             // console.log(err);
           }
-        ); //시간 함수
-        function getCurrentDate() {
-          let thisdate = new Date();
-          let year = thisdate.getFullYear();
-          let month = ("0" + (thisdate.getMonth() + 1)).slice(-2);
-          let day = ("0" + thisdate.getDate()).slice(-2);
-          let hours = thisdate.getHours();
-          let minutes = thisdate.getMinutes();
-          const thistime =
-            year + ":" + month + ":" + day + ":" + hours + ":" + minutes;
-          return thistime;
-        }
+        );
+        //시간 함수 나중에 모듈화
+        // console.log(getCurrentDate());
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);
         updateJSON("tag", tag);
-        updateJSON("object", qparse);
+        //object 용 JSON 제작
+        objectJSON("object", qparse, getCurrentDate());
         res.writeHead(302, { Location: "/" });
         res.end();
       });

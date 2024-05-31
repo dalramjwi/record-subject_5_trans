@@ -14,6 +14,20 @@ const template = {
       <body>
       `;
   },
+  pageTop: function (name) {
+    return `<!DOCTYPE html>
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <script type="module" src="./${name}.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="date" content="" id="${getCurrentDate()}">
+        <title>Sorock</title>
+        <link rel="stylesheet" href="./${name}.css">
+      </head>
+      <body>
+      `;
+  },
 
   baseEnd: function (name) {
     return `</body>
@@ -75,7 +89,7 @@ const template = {
   },
   htmlTempalte: function (title, content, tag) {
     return (
-      template.baseTop("page") +
+      template.pageTop("page") +
       this.header(this.banner, this.search) +
       this.main(this.aside("", ""), this.root("")) +
       `<div id = "page">` +

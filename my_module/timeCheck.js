@@ -8,3 +8,7 @@ function getCurrentDate() {
   const thistime = year + ":" + month + ":" + day + ":" + hours + ":" + minutes;
   return thistime;
 }
+// export한 데이터 받아오는 명령어
+//? const getCurrentDate = require("./timeCheck");
+
+module.exports = getCurrentDate;
