@@ -87,6 +87,11 @@ const template = {
     </form>
   </div>`;
   },
+  menu: `
+  <div id = "menu"> <li id ="tilteSelect">제목</li>
+  <li id ="contentSelect">내용</li>
+  <li id ="tagSelect">태그</li></div>
+ `,
   htmlTempalte: function (title, content, tag) {
     return (
       template.pageTop("page", getCurrentDate()) +
@@ -104,6 +109,7 @@ const template = {
     return (
       template.baseTop("index") +
       this.header(this.banner, this.search) +
+      this.menu +
       this.main(
         this.aside("리스트 예비", "리스트 예비"),
         this.root(`${htmlList}`)
