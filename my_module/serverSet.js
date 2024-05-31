@@ -101,11 +101,11 @@ const serverSet = function serverSet(port) {
       req.on("end", () => {
         //data parse
         let qparse = qs.parse(body);
-        console.log(qparse);
+        // console.log(qparse);
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
         let time = qparse.time;
-        console.log(time);
+        // console.log(time);
         const title = jparse.title;
         const content = jparse.content;
         const tag = jparse.tag;
@@ -123,8 +123,6 @@ const serverSet = function serverSet(port) {
             // console.log(err);
           }
         );
-        //시간 함수 나중에 모듈화
-        // console.log(getCurrentDate());
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);
@@ -154,13 +152,18 @@ const serverSet = function serverSet(port) {
         let parserefer = refererSplit[4];
         let namerefer = decodeURI(parserefer);
         // console.log(namerefer);
+
         //dir 읽어 현재 url과 비교해 조건에 맞다면, 삭제
         fs.readdir(readJsonFilePath, (err, data) => {
           const dirlist = data;
           // console.log(dirlist);
           dirlist.forEach((item) => {
             if (item === namerefer) {
-              fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
+              fs.readFile(`${readJsonFilePath}/${namerefer}`, (err, data) => {
+                let parse = qs.parse(data);
+                console.log(parse);
+              });
+              // fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
             }
           });
         });
@@ -170,8 +173,8 @@ const serverSet = function serverSet(port) {
           let name = namerefer.split(".");
           let realname = name[0];
           let parsename = decodeURI(realname);
-          console.log(name);
-          console.log(parse);
+          // console.log(name);
+          // console.log(parse);
           for (let i = 0; i < parse.length; i++) {
             if (parse[i] === parsename) {
               parse.splice(i, 1);
