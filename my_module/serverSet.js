@@ -128,22 +128,10 @@ const serverSet = function serverSet(port) {
           let day = ("0" + thisdate.getDate()).slice(-2);
           let hours = thisdate.getHours();
           let minutes = thisdate.getMinutes();
-          let seconds = thisdate.getSeconds();
           const thistime =
-            year +
-            ":" +
-            month +
-            ":" +
-            day +
-            ":" +
-            hours +
-            ":" +
-            minutes +
-            ":" +
-            seconds;
+            year + ":" + month + ":" + day + ":" + hours + ":" + minutes;
           return thistime;
         }
-        console.log(getCurrentDate());
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);

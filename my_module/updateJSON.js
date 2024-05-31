@@ -1,4 +1,4 @@
-const updateJSON = function (datatype, dataname, time) {
+const updateJSON = function (datatype, dataname) {
   const fs = require("fs");
   fs.readFile(`./public/${datatype}Data.json`, (err, data) => {
     if (err) {
