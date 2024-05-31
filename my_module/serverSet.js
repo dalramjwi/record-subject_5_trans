@@ -119,12 +119,16 @@ const serverSet = function serverSet(port) {
           (err) => {
             // console.log(err);
           }
-        );
+        ); //시간 함수
+        function getCurrentDate() {
+          var currentDate = new Date();
+          return currentDate.toISOString();
+        }
         //전송받은 POST 데이터로 JSON DB 업데이트
         updateJSON("title", title);
         updateJSON("content", content);
         updateJSON("tag", tag);
-        updateJSON("object", qparse);
+        updateJSON("object", qparse, getCurrentDate());
         res.writeHead(302, { Location: "/" });
         res.end();
       });
