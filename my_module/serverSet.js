@@ -161,8 +161,12 @@ const serverSet = function serverSet(port) {
             if (item === namerefer) {
               fs.readFile(`${readJsonFilePath}/${namerefer}`, (err, data) => {
                 let parse = decodeURI(data);
-                console.log(parse);
-                // console.log(`${readJsonFilePath}/${namerefer}`);
+                let textArr = parse.split("<");
+                let time = textArr[6].split("=");
+                let timeSet = time[2].split(" ");
+                let realtime = timeSet[0];
+                let reptime = realtime.replace(/"/g, "");
+                // console.log(reptime);
               });
               // fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
             }
