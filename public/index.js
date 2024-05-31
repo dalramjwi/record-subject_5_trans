@@ -30,3 +30,22 @@ formSet2(formData2, inputData2, buttonData2);
 //write css 간단히
 writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
+//fetch 사용
+search.addEventListener("input", find);
+function find(event) {
+  search.style.backgroundColor = "red";
+  fetch("/search", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.title == true) {
+        main.style.backgroundColor = "green";
+      }
+    });
+}

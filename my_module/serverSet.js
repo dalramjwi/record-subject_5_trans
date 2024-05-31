@@ -9,6 +9,9 @@ const serverSet = function serverSet(port) {
   const getCurrentDate = require("./timeCheck");
   const getTime = require("./getTime.js");
   const deleteJSON = require("./deleteJSON.js");
+  const titleData = require("../public/titleData.json");
+  const contentData = require("../public/contentData.json");
+  const tagData = require("../public/tagData.json");
 
   //*문서 형식에 따른 표기
   const mimeType = {
@@ -177,6 +180,21 @@ const serverSet = function serverSet(port) {
         });
         res.writeHead(302, { Location: "/" });
         res.end();
+      });
+    }
+    if (req.url === "/search") {
+      let body = "";
+      req.on("data", (data) => {
+        body += data.toString();
+      });
+      req.on("end", () => {
+        let parse = qs.parse(body);
+        let resObj = { title: false };
+        if (titleData.includes(parse)) {
+          resObj.title = true;
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(resObj));
       });
     }
   }
