@@ -97,6 +97,7 @@ const serverSet = function serverSet(port) {
         body += data;
       });
       req.on("end", () => {
+        //data parse
         let qparse = qs.parse(body);
         console.log(qparse);
         let parse = JSON.stringify(qparse);
@@ -133,22 +134,26 @@ const serverSet = function serverSet(port) {
         res.end();
       });
     }
+    //삭제 실행
     if (req.url === "/data/sak") {
       let body = "";
       req.on("data", (data) => {
         body += data.toString();
       });
       req.on("end", () => {
+        //data parse
         let qparse = qs.parse(body);
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
         const readJsonFilePath = path.join(__dirname, `../public/data`);
         // console.log(req.headers.referer);
+        //req.header 조회로 referer 사용 - url 조회
         let referer = req.headers.referer;
         let refererSplit = referer.split("/");
         let parserefer = refererSplit[4];
         let namerefer = decodeURI(parserefer);
         // console.log(namerefer);
+        //dir 읽어 현재 url과 비교해 조건에 맞다면, 삭제
         fs.readdir(readJsonFilePath, (err, data) => {
           const dirlist = data;
           // console.log(dirlist);
@@ -158,6 +163,7 @@ const serverSet = function serverSet(port) {
             }
           });
         });
+        //다시 제목만 모아둔 배열 삭제한 채로 파일 업데이트
         fs.readFile("./public/titleData.json", (err, data) => {
           let parse = JSON.parse(data);
           let name = namerefer.split(".");
@@ -179,10 +185,6 @@ const serverSet = function serverSet(port) {
         });
         res.writeHead(302, { Location: "/" });
         res.end();
-        // fs.readFile("./public/write.html", (err, data) => {
-        //   console.log(data);
-        //   res.end(data);
-        // });
       });
     }
   }
