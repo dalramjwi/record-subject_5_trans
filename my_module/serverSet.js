@@ -8,6 +8,7 @@ const serverSet = function serverSet(port) {
   const objectJSON = require("./objectJSON");
   const getCurrentDate = require("./timeCheck");
   const getTime = require("./getTime.js");
+  const deleteJSON = require("./deleteJSON.js");
 
   //*문서 형식에 따른 표기
   const mimeType = {
@@ -164,83 +165,15 @@ const serverSet = function serverSet(port) {
                       let title = data.title;
                       let content = data.content;
                       let tag = data.tag;
-                      fs.readFile("./public/contentData.json", (err, data) => {
-                        let parse = JSON.parse(data);
-                        for (let i = 0; i < parse.length; i++) {
-                          if (parse[i] === content) {
-                            parse.splice(i, 1);
-                            parse = JSON.stringify(parse);
-                            fs.writeFile(
-                              "./public/contentData.json",
-                              `${parse}`,
-                              (err, data) => {}
-                            );
-                          }
-                        }
-                      });
-                      fs.readFile("./public/tagData.json", (err, data) => {
-                        let parse = JSON.parse(data);
-                        // console.log(name);
-                        // console.log(parse);
-                        for (let i = 0; i < parse.length; i++) {
-                          if (parse[i] === tag) {
-                            parse.splice(i, 1);
-                            parse = JSON.stringify(parse);
-                            fs.writeFile(
-                              "./public/tagData.json",
-                              `${parse}`,
-                              (err, data) => {
-                                fs.unlink(
-                                  `${readJsonFilePath}/${namerefer}`,
-                                  (err) => {}
-                                );
-                              }
-                            );
-                          }
-                        }
-                      });
+                      deleteJSON("content", content);
+                      deleteJSON("tag", tag);
+                      deleteJSON("title", title);
                     }
                   }
-                  // let name = namerefer.split(".");
-                  // let realname = name[0];
-                  // let parsename = decodeURI(realname);
-                  // // console.log(name);
-                  // for (let i = 0; i < parse.length; i++) {
-                  //   if (parse[i] === parsename) {
-                  //     parse.splice(i, 1);
-                  //     parse = JSON.stringify(parse);
-                  //     fs.writeFile(
-                  //       "./public/titleData.json",
-                  //       `${parse}`,
-                  //       (err, data) => {}
-                  //     );
-                  //   }
-                  // }
                 });
-                // console.log(reptime);
               });
             }
           });
-        });
-        //다시 제목만 모아둔 배열 삭제한 채로 파일 업데이트
-        fs.readFile("./public/titleData.json", (err, data) => {
-          let parse = JSON.parse(data);
-          let name = namerefer.split(".");
-          let realname = name[0];
-          let parsename = decodeURI(realname);
-          // console.log(name);
-          // console.log(parse);
-          for (let i = 0; i < parse.length; i++) {
-            if (parse[i] === parsename) {
-              parse.splice(i, 1);
-              parse = JSON.stringify(parse);
-              fs.writeFile(
-                "./public/titleData.json",
-                `${parse}`,
-                (err, data) => {}
-              );
-            }
-          }
         });
         res.writeHead(302, { Location: "/" });
         res.end();
