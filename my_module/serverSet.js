@@ -196,14 +196,17 @@ const serverSet = function serverSet(port) {
 
         fs.readFile("./public/titleData.json", (err, data) => {
           let parse = JSON.parse(data);
+          let jArr = [];
+          jArr.push(Jparse.search);
+          console.log(Jparse.search);
           function templateList(data) {
             let decode = decodeURI(data);
             let parse = JSON.parse(decode);
             let list = "<ul>";
-            for (let i = 0; i < parse.length; i++) {
+            for (let i = 0; i < jArr.length; i++) {
               list =
                 list +
-                `<li><a href="./data/${parse[i]}.html">${parse[i]}</a></li>`;
+                `<li><a href="./data/${jArr[i]}.html">${jArr[i]}</a></li>`;
               `<li>리스트생성</li>`;
             }
             list = list + "</ul>";
