@@ -1,5 +1,6 @@
 // const htmlList = require("./htmlList");
 const fs = require("fs");
+const getCurrentDate = require("./timeCheck");
 const template = {
   baseTop: function (name) {
     return `<!DOCTYPE html>
@@ -14,14 +15,13 @@ const template = {
       <body>
       `;
   },
-  pageTop: function (name) {
+  pageTop: function (name, date) {
     return `<!DOCTYPE html>
     <html lang="ko">
       <head>
         <meta charset="UTF-8" />
-        <script type="module" src="./${name}.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="date" content="" id="${getCurrentDate()}">
+        <meta name="date" content="${date}" id="currentDate">
         <title>Sorock</title>
         <link rel="stylesheet" href="./${name}.css">
       </head>
@@ -89,7 +89,7 @@ const template = {
   },
   htmlTempalte: function (title, content, tag) {
     return (
-      template.pageTop("page") +
+      template.pageTop("page", getCurrentDate()) +
       this.header(this.banner, this.search) +
       this.main(this.aside("", ""), this.root("")) +
       `<div id = "page">` +
