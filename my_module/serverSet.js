@@ -166,9 +166,69 @@ const serverSet = function serverSet(port) {
                 let timeSet = time[2].split(" ");
                 let realtime = timeSet[0];
                 let reptime = realtime.replace(/"/g, "");
+                fs.readFile("./public/objectData.json", (err, data) => {
+                  let parse = JSON.parse(data);
+                  for (let i = 0; i < parse.length; i++) {
+                    if (parse[i].time === reptime) {
+                      let data = parse[i].text;
+                      let title = data.title;
+                      let content = data.content;
+                      let tag = data.tag;
+                      fs.readFile("./public/contentData.json", (err, data) => {
+                        let parse = JSON.parse(data);
+                        for (let i = 0; i < parse.length; i++) {
+                          if (parse[i] === content) {
+                            parse.splice(i, 1);
+                            parse = JSON.stringify(parse);
+                            fs.writeFile(
+                              "./public/contentData.json",
+                              `${parse}`,
+                              (err, data) => {}
+                            );
+                          }
+                        }
+                      });
+                      fs.readFile("./public/tagData.json", (err, data) => {
+                        let parse = JSON.parse(data);
+                        // console.log(name);
+                        // console.log(parse);
+                        for (let i = 0; i < parse.length; i++) {
+                          if (parse[i] === tag) {
+                            parse.splice(i, 1);
+                            parse = JSON.stringify(parse);
+                            fs.writeFile(
+                              "./public/tagData.json",
+                              `${parse}`,
+                              (err, data) => {
+                                fs.unlink(
+                                  `${readJsonFilePath}/${namerefer}`,
+                                  (err) => {}
+                                );
+                              }
+                            );
+                          }
+                        }
+                      });
+                    }
+                  }
+                  // let name = namerefer.split(".");
+                  // let realname = name[0];
+                  // let parsename = decodeURI(realname);
+                  // // console.log(name);
+                  // for (let i = 0; i < parse.length; i++) {
+                  //   if (parse[i] === parsename) {
+                  //     parse.splice(i, 1);
+                  //     parse = JSON.stringify(parse);
+                  //     fs.writeFile(
+                  //       "./public/titleData.json",
+                  //       `${parse}`,
+                  //       (err, data) => {}
+                  //     );
+                  //   }
+                  // }
+                });
                 // console.log(reptime);
               });
-              // fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
             }
           });
         });
