@@ -160,8 +160,9 @@ const serverSet = function serverSet(port) {
           dirlist.forEach((item) => {
             if (item === namerefer) {
               fs.readFile(`${readJsonFilePath}/${namerefer}`, (err, data) => {
-                let parse = qs.parse(data);
+                let parse = decodeURI(data);
                 console.log(parse);
+                // console.log(`${readJsonFilePath}/${namerefer}`);
               });
               // fs.unlink(`${readJsonFilePath}/${namerefer}`, (err) => {});
             }
