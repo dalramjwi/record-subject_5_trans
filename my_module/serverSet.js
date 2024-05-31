@@ -7,6 +7,7 @@ const serverSet = function serverSet(port) {
   const updateJSON = require("./updateJSON");
   const objectJSON = require("./objectJSON");
   const getCurrentDate = require("./timeCheck");
+  const getTime = require("./getTime.js");
 
   //*문서 형식에 따른 표기
   const mimeType = {
@@ -101,11 +102,9 @@ const serverSet = function serverSet(port) {
       req.on("end", () => {
         //data parse
         let qparse = qs.parse(body);
-        // console.log(qparse);
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
         let time = qparse.time;
-        // console.log(time);
         const title = jparse.title;
         const content = jparse.content;
         const tag = jparse.tag;
@@ -145,27 +144,18 @@ const serverSet = function serverSet(port) {
         let parse = JSON.stringify(qparse);
         let jparse = JSON.parse(parse);
         const readJsonFilePath = path.join(__dirname, `../public/data`);
-        // console.log(req.headers.referer);
         //req.header 조회로 referer 사용 - url 조회
         let referer = req.headers.referer;
         let refererSplit = referer.split("/");
         let parserefer = refererSplit[4];
         let namerefer = decodeURI(parserefer);
-        // console.log(namerefer);
-
         //dir 읽어 현재 url과 비교해 조건에 맞다면, 삭제
         fs.readdir(readJsonFilePath, (err, data) => {
           const dirlist = data;
-          // console.log(dirlist);
           dirlist.forEach((item) => {
             if (item === namerefer) {
               fs.readFile(`${readJsonFilePath}/${namerefer}`, (err, data) => {
-                let parse = decodeURI(data);
-                let textArr = parse.split("<");
-                let time = textArr[6].split("=");
-                let timeSet = time[2].split(" ");
-                let realtime = timeSet[0];
-                let reptime = realtime.replace(/"/g, "");
+                let reptime = getTime(data);
                 fs.readFile("./public/objectData.json", (err, data) => {
                   let parse = JSON.parse(data);
                   for (let i = 0; i < parse.length; i++) {
