@@ -111,11 +111,11 @@ const template = {
       template.baseEnd("index")
     );
   },
-  searchTemplate: function (a) {
+  searchTemplate: function (searchList) {
     return (
       template.baseTop("search") +
       this.header(this.banner, this.search) +
-      this.main(this.aside("", ""), this.root(`${a}`)) +
+      this.main(this.aside("", ""), this.root(`${searchList}`)) +
       template.baseEnd("search")
     );
   },

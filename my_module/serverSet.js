@@ -193,14 +193,28 @@ const serverSet = function serverSet(port) {
         let parseObj = JSON.stringify(resObj);
         let obj = JSON.parse(parseObj);
         // console.log(parse.search);
+
         fs.readFile("./public/titleData.json", (err, data) => {
           let parse = JSON.parse(data);
-          console.log(Jparse.search);
+          function templateList(data) {
+            let decode = decodeURI(data);
+            let parse = JSON.parse(decode);
+            let list = "<ul>";
+            for (let i = 0; i < parse.length; i++) {
+              list =
+                list +
+                `<li><a href="./data/${parse[i]}.html">${parse[i]}</a></li>`;
+              `<li>리스트생성</li>`;
+            }
+            list = list + "</ul>";
+            return list;
+          }
+          const htmlList = `${templateList(data)}`;
           if (parse.includes(Jparse.search)) {
             resObj.title = true;
-            res.end(template.searchTemplate("검색 성공"));
+            res.end(template.searchTemplate(htmlList));
           } else {
-            res.end("a");
+            res.end("검색 실패");
           }
         });
         // console.log(obj);
