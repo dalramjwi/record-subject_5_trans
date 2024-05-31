@@ -188,12 +188,17 @@ const serverSet = function serverSet(port) {
       });
       req.on("end", () => {
         let parse = qs.parse(body);
+        let jparse = JSON.stringify(parse);
         let resObj = { title: false };
-        if (titleData.includes(parse)) {
-          resObj.title = true;
-        }
         let parseObj = JSON.stringify(resObj);
-        res.end("test");
+        let obj = JSON.parse(parseObj);
+        console.log(parse.search);
+        if (titleData.includes(parse.search)) {
+          resObj.title = true;
+
+          res.end(template.searchTemplate(parse.search));
+        }
+        console.log(obj);
       });
     }
   }

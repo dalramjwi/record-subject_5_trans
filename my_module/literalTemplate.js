@@ -111,6 +111,14 @@ const template = {
       template.baseEnd("index")
     );
   },
+  searchTemplate: function (a) {
+    return (
+      template.baseTop("search") +
+      this.header(this.banner, this.search) +
+      this.main(this.aside("", ""), this.root(`${a}`)) +
+      template.baseEnd("search")
+    );
+  },
 };
 
 // console.log(template.htmlTempalte());
