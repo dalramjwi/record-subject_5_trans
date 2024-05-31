@@ -34,7 +34,8 @@ writeHTML.style.flexDirection = "column";
 search.addEventListener("input", find);
 function find(event) {
   search.style.backgroundColor = "red";
-  fetch("/search", {
+  const data = search.value;
+  fetch("./public/titleData.json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,6 +47,7 @@ function find(event) {
     .then((data) => {
       if (data.title == true) {
         main.style.backgroundColor = "green";
+        console.log("성공");
       }
     });
 }

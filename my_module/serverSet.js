@@ -12,7 +12,6 @@ const serverSet = function serverSet(port) {
   const titleData = require("../public/titleData.json");
   const contentData = require("../public/contentData.json");
   const tagData = require("../public/tagData.json");
-
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -193,8 +192,8 @@ const serverSet = function serverSet(port) {
         if (titleData.includes(parse)) {
           resObj.title = true;
         }
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(resObj));
+        let parseObj = JSON.stringify(resObj);
+        res.end("test");
       });
     }
   }
