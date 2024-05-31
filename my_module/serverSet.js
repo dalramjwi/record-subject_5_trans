@@ -187,18 +187,23 @@ const serverSet = function serverSet(port) {
         body += data.toString();
       });
       req.on("end", () => {
-        let parse = qs.parse(body);
-        let jparse = JSON.stringify(parse);
+        let Jparse = qs.parse(body);
+        let jparse = JSON.stringify(Jparse);
         let resObj = { title: false };
         let parseObj = JSON.stringify(resObj);
         let obj = JSON.parse(parseObj);
-        console.log(parse.search);
-        if (titleData.includes(parse.search)) {
-          resObj.title = true;
-
-          res.end(template.searchTemplate(parse.search));
-        }
-        console.log(obj);
+        // console.log(parse.search);
+        fs.readFile("./public/titleData.json", (err, data) => {
+          let parse = JSON.parse(data);
+          console.log(Jparse.search);
+          if (parse.includes(Jparse.search)) {
+            resObj.title = true;
+            res.end(template.searchTemplate("검색 성공"));
+          } else {
+            res.end("a");
+          }
+        });
+        // console.log(obj);
       });
     }
   }
