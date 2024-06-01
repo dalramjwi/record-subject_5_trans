@@ -13,9 +13,10 @@ const write = document.getElementById("write");
 const title = document.getElementById("title");
 const content = document.getElementById("content");
 const tag = document.getElementById("tag");
+const titleSelect = document.getElementById("titleSelect");
+const contentSelect = document.getElementById("contentSelect");
 //모듈 사용 - serach
-const formData = ["./search", "POST", search];
-//후에 "./test"가 아닌 search page와 연계
+const formData = ["./search", "POST", titleSelect];
 const inputData = ["type", "search", "페이지 제목 검색"];
 const buttonData = ["submit", "검색"];
 formSet(formData, inputData, buttonData);
@@ -33,3 +34,6 @@ formSet2(formData2, inputData2, buttonData2);
 //write css 간단히
 writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
+//간단한 form 삽입되는지 확인
+const formData3 = ["./searchcontent", "POST", contentSelect];
+formSet(formData3, inputData, buttonData);
