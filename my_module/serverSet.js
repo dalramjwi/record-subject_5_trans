@@ -170,6 +170,10 @@ const serverSet = function serverSet(port) {
                       deleteJSON("content", content);
                       deleteJSON("tag", tag);
                       deleteJSON("title", title);
+                      fs.unlink(
+                        `${readJsonFilePath}/${namerefer}`,
+                        (err) => {}
+                      );
                     }
                   }
                 });

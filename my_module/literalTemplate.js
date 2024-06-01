@@ -80,10 +80,10 @@ const template = {
   btn: function (btn) {
     return `<div id="${btn}">
     <form action="./su" method="post">
-      <button type="submit">수정</button>
+      <button type="submit" id = "su">수정</button>
     </form>
-    <form action="./sak" method="post">
-      <button type="submit">삭제</button>
+    <form action="./sak" method="post" id = "sakform">
+      <button type="submit" id = "sak">삭제</button>
     </form>
   </div>`;
   },
