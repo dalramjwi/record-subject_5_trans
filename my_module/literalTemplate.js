@@ -96,10 +96,8 @@ const template = {
     return `
  <form action="/write" method="post">
  <h1>"${title}"</h1>
- <p>이 제목의 문서가 이미 존재합니다. 동일한 제목으로 새 문서를 만들겠습니까?</p>
- <p>동일한 제목으로 새 문서를 작성할 시 기존의 문서 내용은 사라집니다.</p>
- <button type="submit" name="confirm">예</button>
- <button type="button" onclick="location.href='/'">아니오</button>
+ <p>이 제목의 문서가 이미 존재합니다. 다른 제목으로 새 문서를 만드십시오.</p>
+ <button type="button" onclick="location.href='/'">예</button>
 </form>
  `;
   },
