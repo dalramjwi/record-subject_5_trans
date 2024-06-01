@@ -117,6 +117,17 @@ const serverSet = function serverSet(port) {
           `../public/data/${jparse.title}.json`
         );
         const readJsonFilePath = path.join(__dirname, `../public/data`);
+        // console.log(title);
+        // console.log(titleData);
+        for (let i = 0; i < titleData.length; i++) {
+          if (title === titleData[i]) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(
+              '<script>alert("Duplicate value found!"); window.location.href="/";</script>'
+            );
+          }
+        }
+        // if(title === title){}
         //전송된 데이터로 html 생성
         fs.writeFile(
           `${readJsonFilePath}/${title}.html`,
@@ -202,7 +213,7 @@ const serverSet = function serverSet(port) {
           let parse = JSON.parse(data);
           let jArr = [];
           jArr.push(Jparse.search);
-          console.log(Jparse.search);
+          // console.log(Jparse.search);
           function templateList(data) {
             let decode = decodeURI(data);
             let parse = JSON.parse(decode);
