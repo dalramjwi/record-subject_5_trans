@@ -10,6 +10,9 @@ const root = document.getElementById("root");
 const main = document.getElementById("main");
 const htmlList = document.getElementById("htmlList");
 const write = document.getElementById("write");
+const title = document.getElementById("title");
+const content = document.getElementById("content");
+const tag = document.getElementById("tag");
 //모듈 사용 - serach
 const formData = ["./search", "POST", search];
 //후에 "./test"가 아닌 search page와 연계
@@ -30,24 +33,3 @@ formSet2(formData2, inputData2, buttonData2);
 //write css 간단히
 writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
-//fetch 사용
-// search.addEventListener("input", find);
-// function find(event) {
-//   search.style.backgroundColor = "red";
-//   const data = search.value;
-//   fetch("public/titleData.json", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//     },
-//     // body: data,
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (data.title == true) {
-//         console.log("전송");
-//         main.style.backgroundColor = "green";
-//       }
-//     });
-// }
