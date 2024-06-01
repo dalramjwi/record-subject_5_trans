@@ -1,10 +1,6 @@
-function getCurrentDate() {
-  let thisdate = new Date();
-  let year = thisdate.getFullYear();
-  let month = ("0" + (thisdate.getMonth() + 1)).slice(-2);
-  let day = ("0" + thisdate.getDate()).slice(-2);
-  let hours = thisdate.getHours();
-  let minutes = thisdate.getMinutes();
-  const thistime = year + ":" + month + ":" + day + ":" + hours + ":" + minutes;
-  return thistime;
-}
+const sak = document.getElementById("sak");
+const su = document.getElementById("su");
+
+sak.addEventListener("click", () => {
+  sak.style.backgroundColor = "black";
+});
