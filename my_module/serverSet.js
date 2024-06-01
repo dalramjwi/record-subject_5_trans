@@ -117,33 +117,27 @@ const serverSet = function serverSet(port) {
           `../public/data/${jparse.title}.json`
         );
         const readJsonFilePath = path.join(__dirname, `../public/data`);
-        // console.log(title);
-        // console.log(titleData);
-        for (let i = 0; i < titleData.length; i++) {
-          if (title === titleData[i]) {
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(
-              '<script>alert("Duplicate value found!"); window.location.href="/";</script>'
-            );
-          }
+        if (titleData.includes(title)) {
+          res.writeHead(200, { "Content-Type": "text/html" });
+          res.end(template.alertTemplate(title));
+        } else {
+          //전송된 데이터로 html 생성
+          fs.writeFile(
+            `${readJsonFilePath}/${title}.html`,
+            template.htmlTempalte(title, content, tag),
+            (err) => {
+              // console.log(err);
+            }
+          );
+          //전송받은 POST 데이터로 JSON DB 업데이트
+          updateJSON("title", title);
+          updateJSON("content", content);
+          updateJSON("tag", tag);
+          //object 용 JSON 제작
+          objectJSON("object", qparse, getCurrentDate());
+          res.writeHead(302, { Location: "/" });
+          res.end();
         }
-        // if(title === title){}
-        //전송된 데이터로 html 생성
-        fs.writeFile(
-          `${readJsonFilePath}/${title}.html`,
-          template.htmlTempalte(title, content, tag),
-          (err) => {
-            // console.log(err);
-          }
-        );
-        //전송받은 POST 데이터로 JSON DB 업데이트
-        updateJSON("title", title);
-        updateJSON("content", content);
-        updateJSON("tag", tag);
-        //object 용 JSON 제작
-        objectJSON("object", qparse, getCurrentDate());
-        res.writeHead(302, { Location: "/" });
-        res.end();
       });
     }
     //삭제 실행
@@ -213,7 +207,7 @@ const serverSet = function serverSet(port) {
           let parse = JSON.parse(data);
           let jArr = [];
           jArr.push(Jparse.search);
-          // console.log(Jparse.search);
+          console.log(Jparse.search);
           function templateList(data) {
             let decode = decodeURI(data);
             let parse = JSON.parse(decode);
