@@ -4,7 +4,6 @@ export function inputSet(type, name, placeholder) {
   input.setAttribute("name", name);
   input.setAttribute("id", name);
   input.setAttribute("placeholder", placeholder);
-  input.setAttribute("required", "required");
   return input;
 }
 

@@ -10,7 +10,10 @@ export const formSet2 = function formSet(formData, inputData, buttonData) {
   form.setAttribute("action", formData[0]);
   form.setAttribute("method", formData[1]);
   form.id = "writeHTML";
-  form.appendChild(inputSet(inputData[0], inputData[1][0], inputData[2][0]));
+  const titleform = form.appendChild(
+    inputSet(inputData[0], inputData[1][0], inputData[2][0])
+  );
+  titleform.setAttribute("required", "required");
   form.appendChild(inputSet(inputData[0], inputData[1][1], inputData[2][1]));
   form.appendChild(inputSet(inputData[0], inputData[1][2], inputData[2][2]));
   form.appendChild(buttonSet(buttonData[0], buttonData[1]));
