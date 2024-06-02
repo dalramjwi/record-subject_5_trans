@@ -16,7 +16,7 @@ const tag = document.getElementById("tag");
 const titleSelect = document.getElementById("titleSelect");
 const contentSelect = document.getElementById("contentSelect");
 //모듈 사용 - serach
-const formData = ["./search", "POST", titleSelect];
+const formData = ["./searchtitle", "POST", titleSelect];
 const inputData = ["type", "search", "페이지 제목 검색"];
 const buttonData = ["submit", "검색"];
 formSet(formData, inputData, buttonData);
@@ -36,4 +36,6 @@ writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
 //간단한 form 삽입되는지 확인
 const formData3 = ["./searchcontent", "POST", contentSelect];
-formSet(formData3, inputData, buttonData);
+const inputData3 = ["type", "search", "페이지 내용 검색"];
+
+formSet(formData3, inputData3, buttonData);
