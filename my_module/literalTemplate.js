@@ -101,7 +101,7 @@ const template = {
 </form>
  `;
   },
-  drop: `<ul id = "drop"><li id = "titlelist">제목</li><li id ="contentlist">내용</li></ul>`,
+  drop: `<ul id = "drop"><li id = "titlelist">제목 &#9663;</li><li id ="contentlist">내용</li></ul>`,
   htmlTempalte: function (title, content, tag) {
     return (
       template.pageTop("page", getCurrentDate()) +
