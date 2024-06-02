@@ -15,8 +15,14 @@
   flex-direction: column;
   justify-content: flex-end;
 }
-#search {
+#drop {
   position: relative;
+}
+#contentSelect {
+  display: none;
+}
+#contentlist {
+  display: none;
 }
 /* #titleSelect {
   position: absolute;

@@ -15,6 +15,9 @@ const content = document.getElementById("content");
 const tag = document.getElementById("tag");
 const titleSelect = document.getElementById("titleSelect");
 const contentSelect = document.getElementById("contentSelect");
+const drop = document.getElementById("drop");
+const titlelist = document.getElementById("titlelist");
+const contentlist = document.getElementById("contentlist");
 //모듈 사용 - serach
 const formData = ["./searchtitle", "POST", titleSelect];
 const inputData = ["type", "search", "페이지 제목 검색"];
@@ -39,3 +42,15 @@ const formData3 = ["./searchcontent", "POST", contentSelect];
 const inputData3 = ["type", "search", "페이지 내용 검색"];
 formSet(formData3, inputData3, buttonData);
 //form 드롭다운 메뉴 생성
+titlelist.addEventListener("click", () => {
+  titlelist.style.color = "blue";
+  contentlist.style.display = "block";
+  contentlist.addEventListener("click", () => {
+    contentSelect.style.display = "block";
+    titleSelect.style.display = "none";
+    titlelist.style.display = "none";
+    contentlist.addEventListener("click", () => {
+      titlelist.style.display = "block";
+    });
+  });
+});
