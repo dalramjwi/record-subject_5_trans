@@ -1,0 +1,21 @@
+#drop {
+  position: relative;
+}
+#titlelist {
+  display: none;
+}
+#contentSelect {
+  display: none;
+}
+#contentlist {
+  display: none;
+}
+#taglist {
+  display: none;
+}
+#tagSelect {
+  display: none;
+}
+#write {
+  display: none;
+}

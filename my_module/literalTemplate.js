@@ -131,6 +131,7 @@ const template = {
     return (
       template.baseTop("search") +
       this.header(this.banner, this.search) +
+      this.drop +
       this.main(this.aside("", ""), this.root(`${searchList}`)) +
       template.baseEnd("search")
     );
