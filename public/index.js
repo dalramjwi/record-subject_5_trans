@@ -21,6 +21,8 @@ const contentlist = document.getElementById("contentlist");
 const selectmenu = document.getElementById("selectmenu");
 const taglist = document.getElementById("taglist");
 const tagSelect = document.getElementById("tagSelect");
+const bannerdiv = document.getElementById("bannerdiv");
+const recordimg = document.getElementById("recordimg");
 //모듈 사용 - serach
 const formData = ["./searchtitle", "POST", titleSelect];
 const inputData = ["type", "search", "페이지 제목 검색"];
@@ -89,4 +91,17 @@ drop.addEventListener("mouseout", () => {
   } else if (tagSelect.style.display === on) {
     selectmenu.innerHTML = "태그&#9663;";
   }
+});
+//css div 추가
+let intervalHandler = 0;
+bannerdiv.addEventListener("mouseover", () => {
+  recordimg.style.position = "relative";
+  recordimg.style.left = "7.5vw";
+  recordimg.style.display = "block";
+  recordimg.style.zIndex = "1";
+  setInterval(() => {
+    recordimg.style.rotate = `${intervalHandler}deg`;
+    // console.log(intervalHandler);
+    intervalHandler++;
+  }, 100);
 });

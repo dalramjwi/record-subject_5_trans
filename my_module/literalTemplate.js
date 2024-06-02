@@ -50,8 +50,7 @@ const template = {
     </main>
     `;
   },
-  banner: `<div id="banner">
-        <a href="/">수록</a>
+  banner: `<div id="banner"><div id ="bannerdiv"><img src="./img/record.png" id = "recordimg"><a href="/">수록</a></div>
       </div>`,
   search: `<div id="search"><li id ="titleSelect"></li>
   <li id ="contentSelect"></li><li id ="tagSelect"></li></div>`,

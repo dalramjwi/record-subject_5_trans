@@ -1,3 +1,6 @@
+* {
+  list-style: none;
+}
 #root {
   display: flex;
   flex-direction: row;
@@ -33,6 +36,41 @@
 #tagSelect {
   display: none;
 }
-/* #titleSelect {
+#banner {
+  text-align: center;
+  line-height: 20vh;
+  height: 20vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+#banner > div:first-of-type {
+  width: 20vw;
+  height: 20vw;
   position: absolute;
+  top: 5vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+#banner > div > a {
+  text-decoration: none;
+  position: absolute;
+  top: -5vh;
+  color: black;
+  z-index: 3;
+}
+#banner > div > img {
+  display: none;
+  z-index: 1;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* #banner > div:first-of-type {
+  background-image: url();
 } */
