@@ -94,14 +94,16 @@ drop.addEventListener("mouseout", () => {
 });
 //css div 추가
 let intervalHandler = 0;
+bannerdiv.style.position = "relative";
+bannerdiv.style.zIndex = "2";
 bannerdiv.addEventListener("mouseover", () => {
-  recordimg.style.position = "relative";
   recordimg.style.left = "7.5vw";
   recordimg.style.display = "block";
-  recordimg.style.zIndex = "1";
-  setInterval(() => {
-    recordimg.style.rotate = `${intervalHandler}deg`;
-    // console.log(intervalHandler);
-    intervalHandler++;
-  }, 100);
+  recordimg.style.position = "relative";
+  recordimg.style.zIndex = "-1";
+  // setInterval(() => {
+  //   recordimg.style.rotate = `${intervalHandler}deg`;
+  //   // console.log(intervalHandler);
+  //   intervalHandler++;
+  // }, 100);
 });
