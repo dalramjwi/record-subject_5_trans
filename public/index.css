@@ -18,7 +18,9 @@
 #drop {
   position: relative;
 }
-
+#titlelist {
+  display: none;
+}
 #contentSelect {
   display: none;
 }
