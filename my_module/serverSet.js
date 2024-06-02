@@ -227,7 +227,6 @@ const serverSet = function serverSet(port) {
           }
           const htmlList = `${templateList(data)}`;
           if (parse.includes(Jparse.search)) {
-            resObj.title = true;
             res.end(template.searchTemplate(htmlList));
           } else {
             res.end("검색 실패");
@@ -269,7 +268,6 @@ const serverSet = function serverSet(port) {
           }
           const htmlList = `${templateList(data)}`;
           if (parse.includes(Jparse.search)) {
-            resObj.title = true;
             res.end(template.searchTemplate(htmlList));
           } else {
             res.end("검색 실패");

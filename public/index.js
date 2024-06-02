@@ -37,5 +37,5 @@ writeHTML.style.flexDirection = "column";
 //간단한 form 삽입되는지 확인
 const formData3 = ["./searchcontent", "POST", contentSelect];
 const inputData3 = ["type", "search", "페이지 내용 검색"];
-
 formSet(formData3, inputData3, buttonData);
+//form 드롭다운 메뉴 생성

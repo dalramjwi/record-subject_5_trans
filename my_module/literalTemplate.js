@@ -53,8 +53,8 @@ const template = {
   banner: `<div id="banner">
         <a href="/">수록</a>
       </div>`,
-  search: `<div id="search"><li id ="titleSelect">제목</li>
-  <li id ="contentSelect">내용</li></div>`,
+  search: `<div id="search"><li id ="titleSelect"></li>
+  <li id ="contentSelect"></li></div>`,
   aside: function (joy, my) {
     return `<aside>
     <div id="sidebar">
@@ -89,8 +89,8 @@ const template = {
   </div>`;
   },
   menu: `
-  <div id = "menu"> <li id ="titleSelect">제목</li>
-  <li id ="contentSelect">내용</li></div>
+  <div id = "menu"> <li id ="titleSelect"></li>
+  <li id ="contentSelect"></li></div>
  `,
   alert: function (title) {
     return `
@@ -101,6 +101,7 @@ const template = {
 </form>
  `;
   },
+  drop: `<ul id = "drop"><li>제목</li><li>내용</li></ul>`,
   htmlTempalte: function (title, content, tag) {
     return (
       template.pageTop("page", getCurrentDate()) +
@@ -118,6 +119,7 @@ const template = {
     return (
       template.baseTop("index") +
       this.header(this.banner, this.search) +
+      this.drop +
       this.main(
         this.aside("리스트 예비", "리스트 예비"),
         this.root(`${htmlList}`)
