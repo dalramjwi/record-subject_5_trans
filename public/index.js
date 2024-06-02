@@ -19,6 +19,8 @@ const drop = document.getElementById("drop");
 const titlelist = document.getElementById("titlelist");
 const contentlist = document.getElementById("contentlist");
 const selectmenu = document.getElementById("selectmenu");
+const taglist = document.getElementById("taglist");
+const tagSelect = document.getElementById("tagSelect");
 //모듈 사용 - serach
 const formData = ["./searchtitle", "POST", titleSelect];
 const inputData = ["type", "search", "페이지 제목 검색"];
@@ -42,33 +44,49 @@ writeHTML.style.flexDirection = "column";
 const formData3 = ["./searchcontent", "POST", contentSelect];
 const inputData3 = ["type", "search", "페이지 내용 검색"];
 formSet(formData3, inputData3, buttonData);
+//태그 폼
+const formData4 = ["./searchtag", "POST", tagSelect];
+const inputData4 = ["type", "search", "페이지 태그 검색"];
+formSet(formData4, inputData4, buttonData);
 //form 드롭다운 메뉴 생성
 let on = "block";
 let off = "none";
 drop.addEventListener("mouseover", () => {
   titlelist.style.display = on;
   contentlist.style.display = on;
+  taglist.style.display = on;
   titlelist.addEventListener("click", () => {
     titlelist.style.display = off;
     contentSelect.style.display = off;
     titleSelect.style.display = on;
-    // titlelist.style.display = on;
     contentlist.style.display = off;
+    tagSelect.style.display = off;
   });
   contentlist.addEventListener("click", () => {
     contentlist.style.display = off;
     contentSelect.style.display = on;
     titleSelect.style.display = off;
     titlelist.style.display = off;
-    // contentlist.style.display = on;
+    tagSelect.style.display = off;
+  });
+  taglist.addEventListener("click", () => {
+    contentlist.style.display = off;
+    contentSelect.style.display = off;
+    titleSelect.style.display = off;
+    titlelist.style.display = off;
+    taglist.style.display = off;
+    tagSelect.style.display = on;
   });
 });
 drop.addEventListener("mouseout", () => {
   titlelist.style.display = off;
   contentlist.style.display = off;
+  taglist.style.display = off;
   if (titleSelect.style.display === on) {
     selectmenu.innerHTML = "제목&#9663;";
   } else if (contentSelect.style.display === on) {
     selectmenu.innerHTML = "내용&#9663;";
+  } else if (tagSelect.style.display === on) {
+    selectmenu.innerHTML = "태그&#9663;";
   }
 });

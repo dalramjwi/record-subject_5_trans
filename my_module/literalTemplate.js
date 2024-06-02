@@ -54,7 +54,7 @@ const template = {
         <a href="/">수록</a>
       </div>`,
   search: `<div id="search"><li id ="titleSelect"></li>
-  <li id ="contentSelect"></li></div>`,
+  <li id ="contentSelect"></li><li id ="tagSelect"></li></div>`,
   aside: function (joy, my) {
     return `<aside>
     <div id="sidebar">
@@ -90,7 +90,7 @@ const template = {
   },
   menu: `
   <div id = "menu"> <li id ="titleSelect"></li>
-  <li id ="contentSelect"></li></div>
+  <li id ="contentSelect"></li><li id ="tagSelect"></li></div>
  `,
   alert: function (title) {
     return `
@@ -101,7 +101,7 @@ const template = {
 </form>
  `;
   },
-  drop: `<ul id = "drop"><li id = "selectmenu">검색 방식&#9663;</li><li id = "titlelist">제목</li><li id ="contentlist">내용</li></ul>`,
+  drop: `<ul id = "drop"><li id = "selectmenu">검색 방식&#9663;</li><li id = "titlelist">제목</li><li id ="contentlist">내용</li><li id ="taglist">태그</li></ul>`,
   htmlTempalte: function (title, content, tag) {
     return (
       template.pageTop("page", getCurrentDate()) +

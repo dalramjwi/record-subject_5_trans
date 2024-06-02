@@ -27,6 +27,12 @@
 #contentlist {
   display: none;
 }
+#taglist {
+  display: none;
+}
+#tagSelect {
+  display: none;
+}
 /* #titleSelect {
   position: absolute;
 } */
