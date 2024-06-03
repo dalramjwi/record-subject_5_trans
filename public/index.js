@@ -96,7 +96,7 @@ drop.addEventListener("mouseout", () => {
 let intervalHandler = 0;
 
 bannerdiv.addEventListener("mouseover", () => {
-  recordimg.style.display = "block";
+  // recordimg.style.display = "block";
   // setInterval(() => {
   //   recordimg.style.rotate = `${intervalHandler}deg`;
   //   // console.log(intervalHandler);
