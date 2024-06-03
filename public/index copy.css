@@ -1,0 +1,88 @@
+* {
+  list-style: none;
+}
+#root {
+  display: flex;
+  flex-direction: row;
+}
+#main {
+  display: flex;
+  flex-direction: column;
+}
+#write {
+  display: flex;
+  flex-direction: column;
+}
+#menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+#drop {
+  position: relative;
+}
+#titlelist {
+  display: none;
+}
+#contentSelect {
+  display: none;
+}
+#contentlist {
+  display: none;
+}
+#taglist {
+  display: none;
+}
+#tagSelect {
+  display: none;
+}
+#banner {
+  text-align: center;
+  /* line-height: 20vh; */
+  /* height: 20vh; */
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+}
+#banner > div:first-of-type {
+  /* width: 20vw; */
+  /* height: 20vw; */
+  /* position: absolute; */
+  /* top: 5vh; */
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+#banner > div > a {
+  text-decoration: none;
+  /* position: absolute; */
+  top: -5vh;
+  color: black;
+  z-index: 3;
+  /* height: 20vh; */
+}
+#banner > div > img {
+  display: none;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#bannerdiv {
+  position: relative;
+}
+header > div:nth-of-type(2) > li > form {
+  display: flex;
+  justify-content: center;
+}
+#drop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-end;
+}

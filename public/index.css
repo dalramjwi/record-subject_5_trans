@@ -1,80 +1,149 @@
 * {
   list-style: none;
 }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+#banner {
+  text-align: center;
+}
+
+#banner a {
+  color: #000000;
+  z-index: 1;
+  position: relative;
+  /* background-color: whitesmoke; */
+  /* width: 20%; */
+  /* display: inline-block; */
+  /* height: 20%; */
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+aside {
+  width: 30%;
+  background-color: #f0f0f0;
+}
+
+#sidebar {
+  padding: 10px;
+}
+
+#sidebar div {
+  margin-bottom: 10px;
+}
+
 #root {
-  display: flex;
-  flex-direction: row;
+  width: 65%;
+  background-color: #fff;
+  padding: 10px;
 }
-#main {
-  display: flex;
-  flex-direction: column;
+
+#currentDate {
+  margin-bottom: 20px;
 }
-#write {
-  display: flex;
-  flex-direction: column;
+
+#title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#content {
+  line-height: 1.6;
+}
+
+#tag {
+  color: #666;
+}
+
+button {
+  margin-top: 20px;
+}
+
+#write > button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
 #menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  padding: 0;
+  margin-bottom: 20px;
 }
+
+#menu li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#menu li:last-child {
+  margin-right: 0;
+}
+
 #drop {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-direction: column;
   position: relative;
+  /* left: 70%; */
+  margin-right: 20%;
 }
-#titlelist {
-  display: none;
+
+#drop li {
+  padding: 10px;
+  cursor: pointer;
 }
+
+#drop li:hover {
+  background-color: #ddd;
+}
+
 #contentSelect {
-  display: none;
-}
-#contentlist {
-  display: none;
-}
-#taglist {
   display: none;
 }
 #tagSelect {
   display: none;
 }
-#banner {
-  text-align: center;
-  line-height: 20vh;
-  height: 20vh;
-  position: relative;
-  display: flex;
-  justify-content: center;
+#bannerdiv:hover img {
+  display: block;
 }
-#banner > div:first-of-type {
-  width: 20vw;
-  height: 20vw;
-  position: absolute;
-  top: 5vh;
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: center;
-  z-index: 2;
+header > div:nth-of-type(2) {
+  display: inline-block;
 }
-#banner > div > a {
-  text-decoration: none;
-  position: absolute;
-  top: -5vh;
-  color: black;
-  z-index: 3;
-}
-#banner > div > img {
+#recordimg {
   display: none;
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  z-index: 0;
+  height: 8vh;
+  transform-origin: center;
 }
+@media screen and (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
 
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#search {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#bannerdiv {
-  position: relative;
+  aside {
+    width: 100%;
+  }
+
+  #root {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
