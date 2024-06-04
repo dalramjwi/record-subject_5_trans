@@ -251,8 +251,13 @@ const serverSet = function serverSet(port) {
         // console.log(parse.search);
         fs.readFile("./public/objectData.json", (err, data) => {
           let objectData = JSON.parse(data);
-          console.log(Array.isArray(objectData));
+          // console.log(typeof(objectData.length));
+          // console.log(objectData[0]);
+          for (let i = 0; i < objectData.length; i++) {
+            console.log(objectData[i].text);
+          }
         });
+        res.end("D");
         // fs.readFile("./public/contentData.json", (err, data) => {
         //   let parse = JSON.parse(data);
         //   let jArr = [];
