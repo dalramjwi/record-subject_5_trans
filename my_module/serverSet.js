@@ -59,9 +59,10 @@ const serverSet = function serverSet(port) {
   //*get 요청일때 처리 함수
   function getMethod(req, res, filePath, contentType) {
     // console.log(req.url);
-
+    //*기본 접속일 때 createTemplate 보여주기
     if (req.url === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
+      //*titleData.json 읽어와 리스트 생성
       fs.readFile("./public/titleData.json", (err, data) => {
         function templateList(data) {
           let decode = decodeURI(data);
@@ -84,6 +85,7 @@ const serverSet = function serverSet(port) {
         const htmlList = `${templateList(data)}`;
         res.end(template.createTemplate(htmlList));
       });
+      //*이외에는 자동으로 해석
     } else {
       fs.readFile(filePath, (err, data) => {
         if (err) {
@@ -244,36 +246,38 @@ const serverSet = function serverSet(port) {
       req.on("end", () => {
         let Jparse = qs.parse(body);
         let jparse = JSON.stringify(Jparse);
-        let resObj = { title: false };
-        let parseObj = JSON.stringify(resObj);
-        let obj = JSON.parse(parseObj);
+        // let parseObj = JSON.stringify(resObj);
+        // let obj = JSON.parse(parseObj);
         // console.log(parse.search);
-
-        fs.readFile("./public/contentData.json", (err, data) => {
-          let parse = JSON.parse(data);
-          let jArr = [];
-          jArr.push(Jparse.search);
-          console.log(Jparse.search);
-          function templateList(data) {
-            let decode = decodeURI(data);
-            let parse = JSON.parse(decode);
-            let list = "<ul>";
-            for (let i = 0; i < jArr.length; i++) {
-              list =
-                list +
-                `<li><a href="./data/${jArr[i]}.html">${jArr[i]}</a></li>`;
-              `<li>리스트생성</li>`;
-            }
-            list = list + "</ul>";
-            return list;
-          }
-          const htmlList = `${templateList(data)}`;
-          if (parse.includes(Jparse.search)) {
-            res.end(template.searchTemplate(htmlList));
-          } else {
-            res.end("검색 실패");
-          }
+        fs.readFile("./public/objectData.json", (err, data) => {
+          let objectData = JSON.parse(data);
+          console.log(Array.isArray(objectData));
         });
+        // fs.readFile("./public/contentData.json", (err, data) => {
+        //   let parse = JSON.parse(data);
+        //   let jArr = [];
+        //   jArr.push(Jparse.search);
+        //   console.log(Jparse.search);
+        //   function templateList(data) {
+        //     let decode = decodeURI(data);
+        //     let parse = JSON.parse(decode);
+        //     let list = "<ul>";
+        //     for (let i = 0; i < jArr.length; i++) {
+        //       list =
+        //         list +
+        //         `<li><a href="./data/${jArr[i]}.html">${jArr[i]}</a></li>`;
+        //       `<li>리스트생성</li>`;
+        //     }
+        //     list = list + "</ul>";
+        //     return list;
+        //   }
+        //   const htmlList = `${templateList(data)}`;
+        //   if (parse.includes(Jparse.search)) {
+        //     res.end(template.searchTemplate(htmlList));
+        //   } else {
+        //     res.end("검색 실패");
+        //   }
+        // });
         // console.log(obj);
       });
     }
