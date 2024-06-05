@@ -263,11 +263,12 @@ const serverSet = function serverSet(port) {
             cArr.push(content);
             // tArr.push(title);
           }
-
-          cArr.filter((value) => {
-            value === match;
-            console.log(value);
+          let filterArr = cArr.filter((value) => {
+            if (value === match) {
+              return true;
+            }
           });
+          console.log(filterArr);
 
           // console.log(tArr);
           // console.log(cArr);
