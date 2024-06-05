@@ -256,19 +256,25 @@ const serverSet = function serverSet(port) {
           let match = Jparse.search;
           let cArr = [];
           let tArr = [];
+          let titlename = [];
           for (let i = 0; i < objectData.length; i++) {
             let text = objectData[i].text;
             let content = text.content;
             // let title = text.title;
             cArr.push(content);
-            // tArr.push(title);
-          }
-          let filterArr = cArr.filter((value) => {
-            if (value === match) {
-              return true;
+            tArr.push(text);
+            if (tArr[i].content === match) {
+              console.log(tArr[i].title);
             }
-          });
-          console.log(filterArr);
+          }
+          // console.log(tArr[0].title);
+
+          // let filterArr = tArr.filter((value) => {
+          //   if (value === match) {
+          //     return true;
+          //   }
+          // });
+          // console.log(filterArr);
 
           // console.log(tArr);
           // console.log(cArr);
