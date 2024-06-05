@@ -253,20 +253,25 @@ const serverSet = function serverSet(port) {
           let objectData = JSON.parse(data);
           // console.log(typeof(objectData.length));
           // console.log(objectData[0]);
+          let match = Jparse.search;
           let cArr = [];
           let tArr = [];
           for (let i = 0; i < objectData.length; i++) {
             let text = objectData[i].text;
             let content = text.content;
-            let title = text.title;
-            tArr.push(title);
+            // let title = text.title;
             cArr.push(content);
+            // tArr.push(title);
           }
-          if (cArr.includes(Jparse.search)) {
-            console.log(tArr);
-          } else {
-            console.log("해당 내용의 문서가 존재하지 않습니다.");
-          }
+
+          cArr.filter((value) => {
+            value === match;
+            console.log(value);
+          });
+
+          // console.log(tArr);
+          // console.log(cArr);
+          // console.log(match);
         });
         // fs.readFile("./public/contentData.json", (err, data) => {
         //   let parse = JSON.parse(data);
