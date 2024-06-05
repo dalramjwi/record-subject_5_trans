@@ -251,8 +251,6 @@ const serverSet = function serverSet(port) {
         // console.log(parse.search);
         fs.readFile("./public/objectData.json", (err, data) => {
           let objectData = JSON.parse(data);
-          // console.log(typeof(objectData.length));
-          // console.log(objectData[0]);
           let match = Jparse.search;
           let cArr = [];
           let tArr = [];
@@ -260,52 +258,32 @@ const serverSet = function serverSet(port) {
           for (let i = 0; i < objectData.length; i++) {
             let text = objectData[i].text;
             let content = text.content;
-            // let title = text.title;
             cArr.push(content);
             tArr.push(text);
             if (tArr[i].content === match) {
-              console.log(tArr[i].title);
+              titlename.push(tArr[i].title);
+            } else {
+              ("해당 파일이 존재하지 않습니다.");
             }
           }
-          // console.log(tArr[0].title);
-
-          // let filterArr = tArr.filter((value) => {
-          //   if (value === match) {
-          //     return true;
-          //   }
-          // });
-          // console.log(filterArr);
-
-          // console.log(tArr);
-          // console.log(cArr);
-          // console.log(match);
+          function templateList() {
+            let list = "<ul>";
+            for (let i = 0; i < titlename.length; i++) {
+              list =
+                list +
+                `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
+              `<li>리스트생성</li>`;
+            }
+            list = list + "</ul>";
+            return list;
+          }
+          const htmlList = `${templateList()}`;
+          if (cArr.includes(Jparse.search)) {
+            res.end(template.searchTemplate(htmlList));
+          } else {
+            res.end("검색 실패");
+          }
         });
-        // fs.readFile("./public/contentData.json", (err, data) => {
-        //   let parse = JSON.parse(data);
-        //   let jArr = [];
-        //   jArr.push(Jparse.search);
-        //   console.log(Jparse.search);
-        //   function templateList(data) {
-        //     let decode = decodeURI(data);
-        //     let parse = JSON.parse(decode);
-        //     let list = "<ul>";
-        //     for (let i = 0; i < jArr.length; i++) {
-        //       list =
-        //         list +
-        //         `<li><a href="./data/${jArr[i]}.html">${jArr[i]}</a></li>`;
-        //       `<li>리스트생성</li>`;
-        //     }
-        //     list = list + "</ul>";
-        //     return list;
-        //   }
-        //   const htmlList = `${templateList(data)}`;
-        //   if (parse.includes(Jparse.search)) {
-        //     res.end(template.searchTemplate(htmlList));
-        //   } else {
-        //     res.end("검색 실패");
-        //   }
-        // });
-        // console.log(obj);
       });
     }
     if (req.url === "/searchtag") {
