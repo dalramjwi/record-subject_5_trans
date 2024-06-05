@@ -294,37 +294,44 @@ const serverSet = function serverSet(port) {
       req.on("end", () => {
         let Jparse = qs.parse(body);
         let jparse = JSON.stringify(Jparse);
-        let resObj = { title: false };
-        let parseObj = JSON.stringify(resObj);
-        let obj = JSON.parse(parseObj);
+        // let parseObj = JSON.stringify(resObj);
+        // let obj = JSON.parse(parseObj);
         // console.log(parse.search);
-
-        fs.readFile("./public/tagData.json", (err, data) => {
-          let parse = JSON.parse(data);
-          let jArr = [];
-          jArr.push(Jparse.search);
-          // console.log(Jparse.search);
-          function templateList(data) {
-            let decode = decodeURI(data);
-            let parse = JSON.parse(decode);
+        fs.readFile("./public/objectData.json", (err, data) => {
+          let objectData = JSON.parse(data);
+          let match = Jparse.search;
+          let cArr = [];
+          let tArr = [];
+          let titlename = [];
+          for (let i = 0; i < objectData.length; i++) {
+            let text = objectData[i].text;
+            let tag = text.tag;
+            cArr.push(tag);
+            tArr.push(text);
+            if (tArr[i].tag === match) {
+              titlename.push(tArr[i].title);
+            } else {
+              ("해당 파일이 존재하지 않습니다.");
+            }
+          }
+          function templateList() {
             let list = "<ul>";
-            for (let i = 0; i < jArr.length; i++) {
+            for (let i = 0; i < titlename.length; i++) {
               list =
                 list +
-                `<li><a href="./data/${jArr[i]}.html">${jArr[i]}</a></li>`;
+                `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
               `<li>리스트생성</li>`;
             }
             list = list + "</ul>";
             return list;
           }
-          const htmlList = `${templateList(data)}`;
-          if (parse.includes(Jparse.search)) {
+          const htmlList = `${templateList()}`;
+          if (cArr.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
           } else {
             res.end("검색 실패");
           }
         });
-        // console.log(obj);
       });
     }
   }
