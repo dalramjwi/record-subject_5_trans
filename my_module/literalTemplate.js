@@ -110,6 +110,16 @@ const template = {
  `;
   },
   drop: `<ul id = "drop"><li id = "selectmenu">검색 방식&#9663;</li><li id = "titlelist">제목</li><li id ="contentlist">내용</li><li id ="taglist">태그</li></ul>`,
+
+  suForm: function (title, content, tag) {
+    return ` <form action="/suwrite" method="post">
+    <input type="text" name="sutitle" id="sutitle" value = "${title}">
+    <input type="text" name="sucontent" id="sucontent" value = "${content}">
+    <input type="text" name="sutag" id="sutag" value = "${tag}">
+    <button type="submit">작성하기</button>
+   </form>`;
+  },
+
   htmlTempalte: function (title, content, tag) {
     return (
       template.pageTop("page", getCurrentDate()) +
@@ -160,6 +170,15 @@ const template = {
       this.main(this.aside("", ""), this.root(``)) +
       this.alertFind(title) +
       template.baseEnd("search")
+    );
+  },
+  suTemplate: function (title, content, tag) {
+    return (
+      template.baseTop("su") +
+      this.header(this.banner, this.search) +
+      this.main(this.aside("", ""), this.root(``)) +
+      this.suForm(title, content, tag) +
+      template.baseEnd("su")
     );
   },
 };

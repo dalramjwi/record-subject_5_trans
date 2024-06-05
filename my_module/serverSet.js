@@ -337,7 +337,44 @@ const serverSet = function serverSet(port) {
       });
     }
     if (req.url === "/data/su") {
-      console.log("수정 진입");
+      let body = "";
+      req.on("data", (data) => {
+        body += data.toString();
+      });
+      req.on("end", () => {
+        let Jparse = qs.parse(body);
+        let jparse = JSON.stringify(Jparse);
+        let referer = req.headers.referer;
+        let refererSplit = referer.split("/");
+        let parserefer = refererSplit[4];
+        let namerefer = decodeURI(parserefer);
+        let datatitle = namerefer.split(".")[0];
+        let cArr = [];
+        let tArr = [];
+        //todo 해당 제목을 objectDadta에서 조회해 그 해당 데이터의 제목, 내용, 태그 가져와 value값에 삽입
+        fs.readFile("./public/objectData.json", (err, data) => {
+          let objectData = JSON.parse(data);
+          // let match = Jparse.search;
+          for (let i = 0; i < objectData.length; i++) {
+            let text = objectData[i].text;
+            let title = text.title;
+            tArr.push(title);
+            if (tArr[i] === datatitle) {
+              let ptitle = text.title;
+              let pcontent = text.content;
+              let ptag = text.tag;
+              res.end(template.suTemplate(ptitle, pcontent, ptag));
+              // console.log(text);
+            } else {
+              // console.log("해당 파일이 존재하지 않습니다.");
+            }
+          }
+        });
+      });
+    }
+    if (req.url === "/suwrite") {
+      console.log("작성진입");
+      res.end("dd");
     }
   }
 

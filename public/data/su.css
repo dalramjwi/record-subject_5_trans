@@ -1,0 +1,16 @@
+#currentDate {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+}
+#btn {
+  display: flex;
+  align-items: flex-end;
+}
+#search {
+  display: none;
+}
+#recordimg {
+  display: none;
+}
