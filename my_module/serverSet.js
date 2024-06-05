@@ -253,11 +253,15 @@ const serverSet = function serverSet(port) {
           let objectData = JSON.parse(data);
           // console.log(typeof(objectData.length));
           // console.log(objectData[0]);
+          let cArr = [];
           for (let i = 0; i < objectData.length; i++) {
-            console.log(objectData[i].text);
+            let text = objectData[i].text;
+            let content = text.content;
+            cArr.push(content);
+            console.log(content);
+            console.log(cArr);
           }
         });
-        res.end("D");
         // fs.readFile("./public/contentData.json", (err, data) => {
         //   let parse = JSON.parse(data);
         //   let jArr = [];
@@ -303,7 +307,7 @@ const serverSet = function serverSet(port) {
           let parse = JSON.parse(data);
           let jArr = [];
           jArr.push(Jparse.search);
-          console.log(Jparse.search);
+          // console.log(Jparse.search);
           function templateList(data) {
             let decode = decodeURI(data);
             let parse = JSON.parse(decode);
