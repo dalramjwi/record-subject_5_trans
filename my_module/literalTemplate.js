@@ -116,7 +116,7 @@ const template = {
     <input type="text" name="sutitle" id="sutitle" value = "${title}">
     <input type="text" name="sucontent" id="sucontent" value = "${content}">
     <input type="text" name="sutag" id="sutag" value = "${tag}">
-    <button type="submit">작성하기</button>
+    <button type="submit">작성</button>
    </form>`;
   },
 

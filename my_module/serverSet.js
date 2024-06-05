@@ -1,5 +1,3 @@
-const { match } = require("assert");
-
 const serverSet = function serverSet(port) {
   const http = require("http");
   const fs = require("fs");
@@ -373,8 +371,27 @@ const serverSet = function serverSet(port) {
       });
     }
     if (req.url === "/suwrite") {
-      console.log("작성진입");
-      res.end("dd");
+      let body = "";
+      req.on("data", (data) => {
+        body += data.toString();
+      });
+      req.on("end", () => {
+        let Jparse = qs.parse(body);
+        let jparse = JSON.stringify(Jparse);
+        let parse = JSON.parse(jparse);
+        let sutitle = parse.sutitle;
+        let sucontent = parse.sucontent;
+        let sutag = parse.sutag;
+        const readJsonFilePath = path.join(__dirname, `../public/data`);
+        console.log(parse);
+        fs.writeFile(
+          `${readJsonFilePath}/${sutitle}.html`,
+          template.htmlTempalte(sutitle, sucontent, sutag),
+          (err) => {
+            // console.log(err);
+          }
+        );
+      });
     }
   }
 

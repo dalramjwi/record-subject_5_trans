@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="date" content="2024:06:05:14:49" id="currentDate">
+        <title>Sorock</title>
+        <link rel="stylesheet" href="./page.css">
+      </head>
+      <body>
+      <header>
+    <div id="banner"><div id ="bannerdiv"><img src="./img/record.png" id = "recordimg"><a href="/">수록</a></div>
+      </div>
+    <div id="search"><li id ="titleSelect"></li>
+  <li id ="contentSelect"></li><li id ="tagSelect"></li></div>
+    </header>
+    <main>
+    <aside>
+    <div id="sidebar">
+      <div id="joy"></div>
+      <div id="my"></div>
+    </div>
+    </aside>
+    <div id="root">
+      <div id="main">
+        <div id="htmlList"></div>
+        <div id="write"></div>
+      </div>
+    </div>
+    </main>
+    <div id = "page"><div id="currentDate">
+    <div id="title">제목5</div>
+    <div id="content">content</div>
+    <div id="tag">tag</div>
+  </div><div id="btn">
+    <form action="./su" method="post">
+      <button type="submit" id = "su">수정</button>
+    </form>
+    <form action="./sak" method="post" id = "sakform">
+      <button type="submit" id = "sak">삭제</button>
+    </form>
+  </div></div></body>
+  <script type="module" src="./page.js"></script>
+            </html>
