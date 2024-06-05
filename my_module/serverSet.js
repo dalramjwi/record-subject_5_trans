@@ -361,8 +361,8 @@ const serverSet = function serverSet(port) {
               let ptitle = text.title;
               let pcontent = text.content;
               let ptag = text.tag;
+
               res.end(template.suTemplate(ptitle, pcontent, ptag));
-              // console.log(text);
             } else {
               // console.log("해당 파일이 존재하지 않습니다.");
             }
@@ -383,7 +383,7 @@ const serverSet = function serverSet(port) {
         let sucontent = parse.sucontent;
         let sutag = parse.sutag;
         const readJsonFilePath = path.join(__dirname, `../public/data`);
-        console.log(parse);
+        // console.log(parse);
         fs.writeFile(
           `${readJsonFilePath}/${sutitle}.html`,
           template.htmlTempalte(sutitle, sucontent, sutag),
@@ -391,6 +391,8 @@ const serverSet = function serverSet(port) {
             // console.log(err);
           }
         );
+        res.writeHead(302, { Location: "/" });
+        res.end();
       });
     }
   }
