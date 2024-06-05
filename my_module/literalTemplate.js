@@ -91,11 +91,20 @@ const template = {
   <div id = "menu"> <li id ="titleSelect"></li>
   <li id ="contentSelect"></li><li id ="tagSelect"></li></div>
  `,
-  alert: function (title) {
+  alertMake: function (title) {
     return `
  <form action="/write" method="post">
  <h1>"${title}"</h1>
- <p>이 제목의 문서가 이미 존재합니다. 다른 제목으로 새 문서를 만드십시오.</p>
+ <p>이 제목의 문서가 이미 존재합니다. 다른 제목으로 새 문서를 만드세요.</p>
+ <button type="button" onclick="location.href='/'">예</button>
+</form>
+ `;
+  },
+  alertFind: function (title) {
+    return `
+ <form action="/write" method="post">
+ <h1>"${title}"</h1>
+ <p>해당 텍스트를 포함한 문서가 존재하지 않습니다. 다른 검색어로 검색하세요.</p>
  <button type="button" onclick="location.href='/'">예</button>
 </form>
  `;
@@ -135,12 +144,21 @@ const template = {
       template.baseEnd("search")
     );
   },
-  alertTemplate: function (title) {
+  alertMakeTemplate: function (title) {
     return (
       template.baseTop("search") +
       this.header(this.banner, this.search) +
       this.main(this.aside("", ""), this.root(``)) +
-      this.alert(title) +
+      this.alertMake(title) +
+      template.baseEnd("search")
+    );
+  },
+  alertFindTemplate: function (title) {
+    return (
+      template.baseTop("search") +
+      this.header(this.banner, this.search) +
+      this.main(this.aside("", ""), this.root(``)) +
+      this.alertFind(title) +
       template.baseEnd("search")
     );
   },

@@ -125,7 +125,7 @@ const serverSet = function serverSet(port) {
           let parse = JSON.parse(decode);
           if (parse.includes(title)) {
             res.writeHead(200, { "Content-Type": "text/html;charset=utf-8" });
-            res.end(template.alertTemplate(title));
+            res.end(template.alertMakeTemplate(title));
           } else {
             //전송된 데이터로 html 생성
             fs.writeFile(
@@ -281,7 +281,7 @@ const serverSet = function serverSet(port) {
           if (cArr.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
           } else {
-            res.end("검색 실패");
+            res.end(template.alertFindTemplate(match));
           }
         });
       });
@@ -329,7 +329,7 @@ const serverSet = function serverSet(port) {
           if (cArr.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
           } else {
-            res.end("검색 실패");
+            res.end(template.alertFindTemplate(match));
           }
         });
       });
