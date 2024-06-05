@@ -254,13 +254,18 @@ const serverSet = function serverSet(port) {
           // console.log(typeof(objectData.length));
           // console.log(objectData[0]);
           let cArr = [];
+          let tArr = [];
           for (let i = 0; i < objectData.length; i++) {
             let text = objectData[i].text;
             let content = text.content;
+            let title = text.title;
+            tArr.push(title);
             cArr.push(content);
           }
           if (cArr.includes(Jparse.search)) {
-            console.log("포함");
+            console.log(tArr);
+          } else {
+            console.log("해당 내용의 문서가 존재하지 않습니다.");
           }
         });
         // fs.readFile("./public/contentData.json", (err, data) => {
