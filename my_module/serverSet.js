@@ -342,6 +342,7 @@ const serverSet = function serverSet(port) {
       req.on("end", () => {
         let Jparse = qs.parse(body);
         let jparse = JSON.stringify(Jparse);
+        const readJsonFilePath = path.join(__dirname, `../public/data`);
         let referer = req.headers.referer;
         let refererSplit = referer.split("/");
         let parserefer = refererSplit[4];
@@ -361,7 +362,12 @@ const serverSet = function serverSet(port) {
               let ptitle = text.title;
               let pcontent = text.content;
               let ptag = text.tag;
-
+              deleteJSON("title", ptitle);
+              deleteJSON("content", pcontent);
+              deleteJSON("tag", ptag);
+              fs.unlink(`${readJsonFilePath}/${ptitle}.html`, (err, data) => {
+                // console.log(data);
+              });
               res.end(template.suTemplate(ptitle, pcontent, ptag));
             } else {
               // console.log("해당 파일이 존재하지 않습니다.");
@@ -369,6 +375,7 @@ const serverSet = function serverSet(port) {
           }
         });
       });
+      console.log(req.url);
     }
     if (req.url === "/suwrite") {
       let body = "";
@@ -391,12 +398,19 @@ const serverSet = function serverSet(port) {
             // console.log(err);
           }
         );
+        updateJSON("title", sutitle);
+        updateJSON("content", sucontent);
+        updateJSON("tag", sutag);
+        // fs.readFile("./public/titleData.json", (err, data) => {
+        //   const parse = JSON.parse(data);
+        //   // parse.splice();
+        //   console.log(parse);
+        // });
         res.writeHead(302, { Location: "/" });
         res.end();
       });
     }
   }
-
   //*서버 생성
   const server = http.createServer((req, res) => {
     let url = req.url;
