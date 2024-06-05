@@ -1,3 +1,5 @@
+const { match } = require("assert");
+
 const serverSet = function serverSet(port) {
   const http = require("http");
   const fs = require("fs");
@@ -232,7 +234,7 @@ const serverSet = function serverSet(port) {
           if (parse.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
           } else {
-            res.end("검색 실패");
+            res.end(template.alertFindTemplate(Jparse.search));
           }
         });
         // console.log(obj);
