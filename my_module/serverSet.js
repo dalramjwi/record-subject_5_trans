@@ -258,8 +258,9 @@ const serverSet = function serverSet(port) {
             let text = objectData[i].text;
             let content = text.content;
             cArr.push(content);
-            console.log(content);
-            console.log(cArr);
+          }
+          if (cArr.includes(Jparse.search)) {
+            console.log("포함");
           }
         });
         // fs.readFile("./public/contentData.json", (err, data) => {
