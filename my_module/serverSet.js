@@ -336,6 +336,9 @@ const serverSet = function serverSet(port) {
         });
       });
     }
+    if (req.url === "/data/su") {
+      console.log("수정 진입");
+    }
   }
 
   //*서버 생성
