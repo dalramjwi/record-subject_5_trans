@@ -13,7 +13,6 @@ const serverSet = function serverSet(port) {
   const titleData = require("../public/titleData.json");
   const contentData = require("../public/contentData.json");
   const tagData = require("../public/tagData.json");
-  const templateList = require("./templateList.js");
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -267,17 +266,17 @@ const serverSet = function serverSet(port) {
               ("해당 파일이 존재하지 않습니다.");
             }
           }
-          // function templateList() {
-          //   let list = "<ul>";
-          //   for (let i = 0; i < titlename.length; i++) {
-          //     list =
-          //       list +
-          //       `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
-          //     `<li>리스트생성</li>`;
-          //   }
-          //   list = list + "</ul>";
-          //   return list;
-          // }
+          function templateList() {
+            let list = "<ul>";
+            for (let i = 0; i < titlename.length; i++) {
+              list =
+                list +
+                `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
+              `<li>리스트생성</li>`;
+            }
+            list = list + "</ul>";
+            return list;
+          }
           const htmlList = `${templateList()}`;
           if (cArr.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
@@ -315,17 +314,17 @@ const serverSet = function serverSet(port) {
               ("해당 파일이 존재하지 않습니다.");
             }
           }
-          // function templateList() {
-          //   let list = "<ul>";
-          //   for (let i = 0; i < titlename.length; i++) {
-          //     list =
-          //       list +
-          //       `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
-          //     `<li>리스트생성</li>`;
-          //   }
-          //   list = list + "</ul>";
-          //   return list;
-          // }
+          function templateList() {
+            let list = "<ul>";
+            for (let i = 0; i < titlename.length; i++) {
+              list =
+                list +
+                `<li><a href="./data/${titlename[i]}.html">${titlename[i]}</a></li>`;
+              `<li>리스트생성</li>`;
+            }
+            list = list + "</ul>";
+            return list;
+          }
           const htmlList = `${templateList()}`;
           if (cArr.includes(Jparse.search)) {
             res.end(template.searchTemplate(htmlList));
